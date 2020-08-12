@@ -40,8 +40,12 @@ return [
             'driver' => 'jwt',
             'provider' => 'users'
         ],
+        'web' => [
+            'driver' => 'jwt',
+            'provider' => 'users'
+        ],
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
         ],
@@ -70,10 +74,10 @@ return [
             'model' => \Member\app\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'trainer' => [
+             'driver' => 'eloquent',
+             'table' => 'users',
+         ],
     ],
 
     /*

@@ -2,11 +2,15 @@
 
 namespace App\Exceptions;
 
+use Dotenv\Exception\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Member\app\Traits\ApiResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use \Member\app\Exceptions\ExceptionHandler;
     /**
      * A list of the exception types that are not reported.
      *
@@ -50,6 +54,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        parent::render($request, $exception);
+        return $this->handleApiException($request, $exception);
     }
+
+
 }
