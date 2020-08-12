@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,23 +12,27 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['prefix'=>'user/','namespace'=>'Member\app\Http\Controllers'],function (){
-    Route::post('register', 'UserController@register');
-    Route::post('login', 'UserController@login');
-    Route::post('logout', 'UserController@logout');
-    Route::get('', 'UserController@login')->name('login');
-});
+Route::group(['prefix'=>'member/'],function(){
 
-Route::group(['middleware'=>'auth:users','namespace'=>'Category\app\Http\Controllers'],function (){
-
-    Route::group(['prefix'=>'category/'],function () {
-        Route::get('{id}', 'CategoryController@get');
+    Route::group(['namespace'=>'Member\app\Http\Controllers'],function (){
+        Route::post('register', 'UserController@register');
+        Route::post('login', 'UserController@login');
+        Route::post('logout', 'UserController@logout');
+        Route::get('', 'UserController@login')->name('login');
     });
 
-    Route::group(['prefix'=>'plan/'],function () {
-        Route::get('all', 'RoleController@all');
-        Route::post('', 'RoleController@assign');
-        Route::get('{id}', 'RoleController@get');
+    Route::group(['middleware'=>'auth:users','namespace'=>'Category\app\Http\Controllers'],function (){
+
+        Route::group(['prefix'=>'category/'],function () {
+            Route::get('{id}', 'CategoryController@get');
+        });
+
+        Route::group(['prefix'=>'plan/'],function () {
+            Route::get('all', 'RoleController@all');
+            Route::post('', 'RoleController@assign');
+            Route::get('{id}', 'RoleController@get');
+        });
     });
+
 });
 
