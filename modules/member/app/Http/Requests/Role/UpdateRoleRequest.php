@@ -4,7 +4,7 @@ namespace Member\app\Http\Requests\Role;
 
 use Category\app\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
-use Member\app\Models\User;
+use Member\app\Models\Trainer;
 
 class UpdateRoleRequest extends FormRequest
 {

@@ -164,8 +164,8 @@ return [
         /*
          * Package Service Providers...
          */
-        \Member\app\Providers\UserServiceProvider::class,
         \Core\app\Providers\CoreServiceProvider::class,
+        \Member\app\Providers\UserServiceProvider::class,
         \Core\app\Providers\AuthServiceProvider::class,
         /*
          * Application Service Providers...
@@ -175,8 +175,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+//        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
     ],
 

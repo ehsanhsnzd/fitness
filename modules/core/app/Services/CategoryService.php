@@ -20,15 +20,18 @@ class CategoryService
         $this->permissionRepo = new PermissionRepository();
     }
 
+
+
     /** get category by id
      * @param $request
      * @return array
      */
     public function get($request)
     {
-        $categories = $this->repo->fetch($request->id,['nodes']);
+        $categories = $this->repo->fetch($request['id'],['nodes']);
 
-        return $categories->toArray();
+        return
+            $categories->toArray();
     }
 
     /**
@@ -37,25 +40,29 @@ class CategoryService
      */
     public function set($request)
     {
-        $category = $this->repo->create($request->toArray());
-        $role = $this->roleRepo->where('name',$request->plan)->first();
+        $category = $this->repo->create($request);
+        $role = $this->roleRepo->where('name',$request['plan'])->first();
         $permission = $this->permissionRepo->create([
-            'name' => 'category_'.$category->id,
+            'name' => 'category.'.$category->id,
             'guard_name' => 'users'
         ]);
         $role->givePermissionTo($permission);
 
-        return $category;
+        return [
+            $category
+        ];
     }
 
 
     public function edit($request)
     {
-        return $this->repo->update($request->id,$request->toArray());
+        return [
+            $this->repo->update($request['id'],$request)
+        ];
     }
 
-    public function delete($id)
+    public function delete($request)
     {
-        $this->repo->delete($id);
+        $this->repo->delete($request['id']);
     }
 }

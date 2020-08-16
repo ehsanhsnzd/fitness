@@ -4,8 +4,10 @@
 namespace Core\app\Http\Controllers;
 
 
+use Core\app\Http\Requests\Role\EditRoleRequest;
 use Core\app\Http\Requests\Role\GetRoleRequest;
-use Core\app\Http\Requests\Role\UpdateRoleRequest;
+use Core\app\Http\Requests\Role\DeleteRoleRequest;
+use Core\app\Http\Requests\Role\SetRoleRequest;
 use Illuminate\Http\Request;
 use Core\app\Services\RoleService;
 
@@ -29,22 +31,22 @@ class RoleController extends BaseController
     public function get(GetRoleRequest $request)
     {
         try{
-            return $this->setMetaData($this->service->get($request->getData()))->successResponse();
+            return $this->setMetaData($this->service->get($request->all()))->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }
     }
 
-    public function set(UpdateRoleRequest $request)
+    public function set(SetRoleRequest $request)
     {
         try{
-            return $this->setMetaData($this->service->edit($request->getData()))->successResponse();
+            return $this->setMetaData($this->service->set($request->getData()))->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }
     }
 
-    public function edit(UpdateRoleRequest $request)
+    public function edit(EditRoleRequest $request)
     {
         try{
 
@@ -54,10 +56,11 @@ class RoleController extends BaseController
         }
     }
 
-    public function delete(Request $request)
+    public function delete(DeleteRoleRequest $request)
     {
         try{
-            return $this->setMetaData($this->service->delete($request->getData()))->successResponse();
+            $this->service->delete($request->all());
+            return $this->setMetaData([])->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }
@@ -67,8 +70,7 @@ class RoleController extends BaseController
     public function assign(Request $request)
     {
         try{
-            $this->service->assign($request);
-            return $this->setMetaData([])->successResponse();
+            return $this->setMetaData([$this->service->assign($request)])->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }

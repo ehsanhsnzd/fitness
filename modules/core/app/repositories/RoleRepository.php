@@ -31,12 +31,12 @@ class RoleRepository implements Repository
 
     public function all(): Collection
     {
-        // TODO: Implement all() method.
+        return $this->model->all();
     }
 
     public function create(array $params)
     {
-        // TODO: Implement create() method.
+        return $this->model->create($params);
     }
 
     public function update(int $id,array $params)
@@ -46,7 +46,7 @@ class RoleRepository implements Repository
 
     public function delete(int $id)
     {
-        // TODO: Implement delete() method.
+        $this->find($id)->delete();
     }
 
     public function where($param,$value)

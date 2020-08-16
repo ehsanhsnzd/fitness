@@ -5,7 +5,7 @@ namespace Core\app\Services;
 
 
 use Core\app\repositories\RoleRepository;
-use Member\app\Models\User;
+use Member\app\Repositories\UserRepository;
 
 class RoleService
 {
@@ -13,15 +13,28 @@ class RoleService
      * @var RoleRepository
      */
     private $repo;
+    private $userRepo;
 
     public function __construct($repo= null)
     {
         $this->repo = $repo ?? new RoleRepository();
+        $this->userRepo = new UserRepository();
+    }
+
+    public function all()
+    {
+        return $this->repo->all()->toArray();
     }
 
     public function get($request)
     {
-        return $this->repo->find($request->id)->toArray();
+        return $this->repo->find($request['id'])->toArray();
+    }
+
+    public function set($request)
+    {
+        $request['guard_name'] = 'users';
+        return $this->repo->create($request)->toArray();
     }
 
     public function edit($request)
@@ -34,12 +47,12 @@ class RoleService
 
     public function assign($request)
     {
-        $user = User::find($request->user_id);
-        $user->assignRole($request->plan);
+        $user = $this->userRepo->find($request->user_id);
+        return $user->assignRole($request->plan);
     }
 
-    public function delete()
+    public function delete($request)
     {
-
+        $this->repo->delete($request['id']);
     }
 }

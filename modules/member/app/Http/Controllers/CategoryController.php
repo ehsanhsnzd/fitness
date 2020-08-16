@@ -3,8 +3,8 @@ namespace Member\app\Http\Controllers;
 
 
 use Core\app\Http\Controllers\BaseController;
-use Core\app\Http\Requests\Role\GetRoleRequest;
 use Core\app\Services\CategoryService;
+use Member\app\Http\Requests\Category\GetCategoryRequest;
 
 class CategoryController extends BaseController
 {
@@ -15,10 +15,10 @@ class CategoryController extends BaseController
     }
 
 
-    public function get(GetRoleRequest $request)
+    public function get(GetCategoryRequest $request)
     {
         try{
-            return $this->setMetaData($this->service->get($request->getData()))->successResponse();
+            return $this->setMetaData($this->service->get($request->all()))->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }

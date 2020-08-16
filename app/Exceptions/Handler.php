@@ -10,7 +10,7 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    use \Member\app\Exceptions\ExceptionHandler;
+    use \Core\app\Exceptions\ExceptionHandler;
     /**
      * A list of the exception types that are not reported.
      *
@@ -54,8 +54,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        parent::render($request, $exception);
-        return $this->handleApiException($request, $exception);
+         return $this->handleApiException($request, $exception) ?? parent::render($request, $exception);
     }
 
 

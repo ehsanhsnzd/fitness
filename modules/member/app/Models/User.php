@@ -2,16 +2,20 @@
 
 namespace Member\app\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+/**
+ * @property mixed expire_date
+ */
+class User extends Authenticatable
 {
-    use Notifiable;
-    use HasRoles;
+    use HasApiTokens,Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +23,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','mobile'
     ];
 
     /**
@@ -38,9 +42,37 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'expire_date' => 'datetime',
     ];
 
-    public function getJWTIdentifier()
+    /** permission for plan expire date
+     * @param iterable|string $abilities
+     * @param array $arguments
+     * @return bool
+     * @throws AccessDeniedException
+     */
+
+
+    public function can($abilities, $arguments = [])
+    {
+        if($this->expire_date<= now() || $this->expire_date == null)
+            throw new AccessDeniedException('dont have any plan');
+
+            return parent::can($abilities,$arguments);
+    }
+
+    public function selected()
+    {
+        return $this->belongsToMany(Role::class,'selected_roles','user_id','role_id');
+    }
+
+    public function findForPassport($username)
+    {
+        return $this->where('mobile', $username)->first();
+    }
+
+
+/*    public function getJWTIdentifier()
     {
         return $this->getKey();
     }
@@ -48,5 +80,5 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
-    }
+    }*/
 }

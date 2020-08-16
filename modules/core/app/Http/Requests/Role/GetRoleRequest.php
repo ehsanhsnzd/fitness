@@ -33,8 +33,4 @@ class GetRoleRequest extends FormRequest
         return ['id' => app('request')->id];
     }
 
-    public function getData()
-    {
-        return (object)$this->all();
-    }
 }

@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'users',
         'passwords' => 'users',
     ],
 
@@ -37,18 +37,33 @@ return [
 
     'guards' => [
         'users' => [
-            'driver' => 'jwt',
-            'provider' => 'users'
-        ],
-        'web' => [
-            'driver' => 'jwt',
-            'provider' => 'users'
-        ],
-        'api' => [
-            'driver' => 'jwt',
+            'driver' => 'session',
             'provider' => 'users',
-            'hash' => false,
         ],
+
+        'users-api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
+        'trainer' => [
+            'driver' => 'session',
+            'provider' => 'trainer',
+        ],
+
+        'trainer-api' => [
+            'driver' => 'passport',
+            'provider' => 'trainer',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
+        'admin-api' => [
+            'driver' => 'passport',
+            'provider' => 'admin',
+        ],
+
     ],
 
     /*
@@ -73,10 +88,13 @@ return [
             'driver' => 'eloquent',
             'model' => \Member\app\Models\User::class,
         ],
-
-         'trainer' => [
+        'trainer' => [
+            'driver' => 'eloquent',
+            'model' => \Trainer\app\Models\Trainer::class,
+        ],
+         'admin' => [
              'driver' => 'eloquent',
-             'table' => 'users',
+             'model' => \Core\app\Models\Admin::class,
          ],
     ],
 

@@ -13,8 +13,7 @@ class GetCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-//        return $this->user('users')->can('getCategory',Category::class);
-        return $this->user('users')->can('category_'.$this->id);
+        return true;
     }
 
     /**

@@ -1,13 +1,11 @@
 <?php
 
-namespace Member\app\Traits;
+namespace Core\app\Traits;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use OpenApi\Annotations\Property;
-use OpenApi\Annotations\Schema;
 
 /**
  *

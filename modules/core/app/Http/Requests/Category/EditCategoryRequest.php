@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\app\Http\Requests\Role;
+namespace Core\app\Http\Requests\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRoleRequest extends FormRequest
+class EditCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,15 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric|exists:roles,id',
-            'name' => 'required|string',
-            'description' => 'string'
+            'id'    =>  'required|numeric',
+            'title' => 'required|string',
+            'plan'  => 'required|string|exists:roles,name'
         ];
     }
 
 
     public function getData()
     {
-        return $this->only('id','name','description');
+        return $this->only('id','title','plan');
     }
-
 }

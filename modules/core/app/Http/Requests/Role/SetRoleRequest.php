@@ -25,8 +25,13 @@ class SetRoleRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'name_fa' => 'required|string',
             'description' => 'string'
         ];
     }
 
+    public function getData()
+    {
+        return $this->only('name','name_fa','description');
+    }
 }

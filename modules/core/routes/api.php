@@ -12,30 +12,31 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::group(['prefix'=>'admin/'],function (){
 
     Route::group(['namespace'=>'Core\app\Http\Controllers'],function (){
-        Route::post('register', 'UserController@register');
-        Route::post('login', 'UserController@login');
-        Route::post('logout', 'UserController@logout');
-        Route::get('', 'UserController@login')->name('login');
+        Route::post('register', 'AdminController@register');
+        Route::post('login', 'AdminController@login');
+        Route::post('refresh', 'AdminController@refresh');
+        Route::post('logout', 'AdminController@logout');
+        Route::get('', 'AdminController@login')->name('login');
     });
 
-    Route::group(['middleware'=>'auth:admin','namespace'=>'Category\app\Http\Controllers'],function (){
+    Route::group(['middleware'=>'auth:admin-api','namespace'=>'Core\app\Http\Controllers'],function (){
 
         Route::group(['prefix'=>'category/'],function () {
             Route::post('', 'CategoryController@set');
             Route::put('', 'CategoryController@edit');
-            Route::delete('', 'CategoryController@delete');
+            Route::delete('{id}', 'CategoryController@delete');
             Route::get('{id}', 'CategoryController@get');
         });
-
         Route::group(['prefix'=>'plan/'],function () {
-            Route::get('all', 'RoleController@all');
+            Route::get('', 'RoleController@all');
             Route::post('', 'RoleController@set');
             Route::put('', 'RoleController@edit');
-            Route::post('', 'RoleController@assign');
-            Route::delete('', 'RoleController@delete');
+            Route::post('trainer/assign', 'RoleController@assign');
+            Route::delete('{id}', 'RoleController@delete');
             Route::get('{id}', 'RoleController@get');
         });
     });

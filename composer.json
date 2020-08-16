@@ -11,11 +11,13 @@
         "php": "^7.2.5",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.0",
         "laravel/framework": "^7.0",
+        "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "spatie/laravel-permission": "^3.13",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+      "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -37,8 +39,9 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "Core\\": "modules/core/",
             "Member\\": "modules/member/",
-            "Core\\": "modules/core/"
+            "Trainer\\": "modules/trainer/"
         },
         "classmap": [
             "database/seeds",

@@ -2,17 +2,17 @@
 
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Member\app\Models\User;
+use Member\app\Models\Trainer;
 
 class CategoryPolicy
 {
     use HandlesAuthorization;
 
     /** User can get category
-     * @param User $user
+     * @param Trainer $user
      * @return bool
      */
-    public function getCategory(User $user)
+    public function getCategory(Trainer $user)
     {
 //        return $user->can('category_'.$this->id);
     }

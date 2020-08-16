@@ -1,12 +1,14 @@
 <?php
 
 
-namespace Core\app\Http\Controllers;
+namespace Member\app\Http\Controllers;
 
 
-use Core\app\Http\Requests\Role\GetRoleRequest;
+use Core\app\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
-use Core\app\Services\RoleService;
+use Member\app\Http\Requests\Role\AssignRoleRequest;
+use Member\app\Http\Requests\Role\GetRoleRequest;
+use Member\app\Services\RoleService;
 
 class RoleController extends BaseController
 {
@@ -29,6 +31,15 @@ class RoleController extends BaseController
     {
         try{
             return $this->setMetaData($this->service->get($request->getData()))->successResponse();
+        }catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
+    }
+
+    public function register(AssignRoleRequest $request)
+    {
+        try{
+            return $this->setMetaData($this->service->register($request->getData()))->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }
