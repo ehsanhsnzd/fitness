@@ -4,6 +4,7 @@ namespace Member\app\Http\Requests\Category;
 
 use Core\app\repositories\CategoryRepository;
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 class GetCategoryRequest extends FormRequest
 {
@@ -30,7 +31,10 @@ class GetCategoryRequest extends FormRequest
         if(isset($category) && $category->public)
             return true;
 
-        return $this->user('users-api')->can('category.'.$this->id,$this->id);
+        if(!$this->user('users-api')->can('category.'.$this->id,$this->id))
+            throw new AccessDeniedException('dont have access');
+        else
+            return true;
     }
 
     /**
