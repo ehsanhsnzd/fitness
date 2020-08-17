@@ -32,7 +32,7 @@ Route::group(['prefix'=>'member/'],function(){
         });
 
         Route::group(['prefix'=>'plan/'],function () {
-            Route::get('all', 'RoleController@all');
+            Route::get('', 'RoleController@all');
             Route::post('register', 'RoleController@register');
             Route::get('{id}', 'RoleController@get');
         });

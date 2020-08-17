@@ -2,17 +2,15 @@
 
 namespace Member\app\Models;
 
+use Core\app\Models\Plan;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
-/**
- * @property mixed expire_date
- */
+
 class User extends Authenticatable
 {
     use HasApiTokens,Notifiable,HasRoles;
@@ -61,9 +59,14 @@ class User extends Authenticatable
             return parent::can($abilities,$arguments);
     }
 
-    public function selected()
+    public function selectedPlans()
     {
         return $this->belongsToMany(Role::class,'selected_roles','user_id','role_id');
+    }
+
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class,'plan_id','id');
     }
 
     public function findForPassport($username)
@@ -71,14 +74,4 @@ class User extends Authenticatable
         return $this->where('mobile', $username)->first();
     }
 
-
-/*    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }*/
 }

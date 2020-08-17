@@ -6,7 +6,7 @@ namespace Member\app\Http\Controllers;
 
 use Core\app\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
-use Member\app\Http\Requests\Role\AssignRoleRequest;
+use Member\app\Http\Requests\Role\RegisterRoleRequest;
 use Member\app\Http\Requests\Role\GetRoleRequest;
 use Member\app\Services\RoleService;
 
@@ -36,7 +36,7 @@ class RoleController extends BaseController
         }
     }
 
-    public function register(AssignRoleRequest $request)
+    public function register(RegisterRoleRequest $request)
     {
         try{
             return $this->setMetaData($this->service->register($request->getData()))->successResponse();

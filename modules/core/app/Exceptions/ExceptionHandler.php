@@ -61,6 +61,7 @@ trait ExceptionHandler
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(401,$httpCode),$e->getCode(),$status);
 
         }elseif($e instanceof QueryException) {
+            return $e;
             return $this->handle($e, $e->getMessage(), $this->getHttpCode(409, $httpCode), $e->getCode(), $status);
         } elseif($e instanceof UnexpectedValueException) {
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(400,$httpCode),$e->getCode(),$status);
@@ -69,7 +70,8 @@ trait ExceptionHandler
             $e = $this->convertValidationExceptionToResponse($e, $request);
             return $this->setMetaData([], ["validation" => $e->getOriginalContent()])->badRequestResponse();
         }else {
-            return $this->customResponse($e->getMessage(),$status,500,$e->getCode());
+            return $e;
+            return $this->customResponse($e,$status,500,$e->getCode());
             return $this->failedResponse();
         }
 

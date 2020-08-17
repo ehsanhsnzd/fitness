@@ -80,7 +80,7 @@ class CategoryRepository implements Repository
         return $this->model;
     }
 
-    public function where(string $param, $value): Collection
+    public function where(array $params): Collection
     {
         // TODO: Implement where() method.
     }

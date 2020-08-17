@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 class Category extends Model
 {
     use HasRoles;
-    protected $fillable=['parent_id','title','public'];
+    protected $fillable=['parent_id','title','plan_id','public'];
 
     /** recursive category children
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

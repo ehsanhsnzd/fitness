@@ -4,6 +4,7 @@
 namespace Core\app\Services;
 
 
+use Core\app\repositories\PlanRepository;
 use Core\app\repositories\RoleRepository;
 use Member\app\Repositories\UserRepository;
 
@@ -14,11 +15,13 @@ class RoleService
      */
     private $repo;
     private $userRepo;
+    private $planRepo;
 
     public function __construct($repo= null)
     {
         $this->repo = $repo ?? new RoleRepository();
         $this->userRepo = new UserRepository();
+        $this->planRepo = new PlanRepository();
     }
 
     public function all()
@@ -34,7 +37,9 @@ class RoleService
     public function set($request)
     {
         $request['guard_name'] = 'users';
-        return $this->repo->create($request)->toArray();
+        $role = $this->repo->create($request);
+        $request['role_id'] = $role->id;
+        return $this->planRepo->create($request)->toArray();
     }
 
     public function edit($request)

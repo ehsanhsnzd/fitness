@@ -4,15 +4,19 @@
 namespace Core\app\repositories;
 
 
+use Core\app\Models\Plan;
 use Illuminate\Database\Eloquent\Collection;
-use Spatie\Permission\Models\Role;
 
-class RoleRepository implements Repository
+class PlanRepository implements Repository
 {
-    protected $model;
+    /**
+     * @var Plan
+     */
+    private $model;
+
     public function __construct()
     {
-        $this->model = new Role();
+        $this->model = new Plan();
     }
     public function find(int $id)
     {
@@ -31,7 +35,7 @@ class RoleRepository implements Repository
 
     public function all(): Collection
     {
-        return $this->model->all();
+        // TODO: Implement all() method.
     }
 
     public function create(array $params)
@@ -39,14 +43,14 @@ class RoleRepository implements Repository
         return $this->model->create($params);
     }
 
-    public function update(int $id,array $params)
+    public function update(int $id, array $params)
     {
-        $this->model->update($params);
+        // TODO: Implement update() method.
     }
 
     public function delete(int $id)
     {
-        $this->find($id)->delete();
+        // TODO: Implement delete() method.
     }
 
     public function where(array $params)

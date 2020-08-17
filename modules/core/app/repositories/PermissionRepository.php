@@ -55,7 +55,7 @@ class PermissionRepository implements Repository
         // TODO: Implement delete() method.
     }
 
-    public function where(string $param, $value): Collection
+    public function where(array $params): Collection
     {
         // TODO: Implement where() method.
     }

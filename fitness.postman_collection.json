@@ -54,6 +54,40 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "current plan",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMCIsImp0aSI6ImZhMjNmZWQyN2I2NjcxNGNiMjhiN2UyMTU2ZWNmZGY3MTY3ZTczOGJmYzM3ZGEyZjM4MTg4NmNhMzkzNjhkZmU1ZTI1NWI5ZDhhOGU3ZTZlIiwiaWF0IjoxNTk3NTg2MDIyLCJuYmYiOjE1OTc1ODYwMjIsImV4cCI6MTU5NzY3MjQyMSwic3ViIjoiNjIiLCJzY29wZXMiOlsiKiJdfQ.RakaRJJnXjDTlahiyiXBxemsrcRWpOR7vjh1G7Rlx_I61sq0OWJC_n7V6xIYHEY6oswTH1804WzYk3TdAMnd31O7vU0RFdWkDSwtzxaxg-lJywJB5Ux0p7L-3vDjqXOX9CRNfjcP1oVB2DqRNuQrr7Bt2HFLupyEatNRH-vPG_SRs5WSEcGLQtjuoQwjKRBwVcAd0QLYah9xlyf09XbG9sFje39uXfB0lwV9QDrwZCJL5S3gwClwuH5FbFpSw23Ql8xP3QhGkbfi7SrjJ5Ovh8IytcuSEGgaQTbkopdVtQ8edjzrVUkQVd2dF_g8yOLQZIEi0e7o1kgKo2yC3hbRX0S1ElXO8qPyrnS23FQbhLWJi_XyYQXLuhxkznxgHlLhLnepVO1h8R8fX49vsREXUqOm1LS5SQoO5IWxxdWtyJQV86cPQYcGDz98yBxjSuLH9WpxdjAnQkxBpC-yWjvTf8zARz2Jczq3vxaQv8uph_qSM7Rc5mXuAhPvPWFniuNFRttWr7qYK3IOmilBAFRLaaqd2UBT-FaFW45AFH0xl8nS1AhT9Ndbct_FCKZDxf2iAQ7QYG7ot4gz9BdOQJ7kqcK8OADq08fzp9u8zKEKeV-EB9T7kSbUaLs5mQV6L6u4HqRLhmEeHUcJfKVTdpZxf5YtuWoe3-LxoSeG6boIM78",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{localhost}}/member/plan",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"member",
+										"plan"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -430,7 +464,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMSIsImp0aSI6IjlkMDJiNmY0YjA1YWMzZDYyZTg0NjFjY2Q1MzgzNjJhMTY0ZDM2NjBiNjE5YjIwZDM4OTg5M2EzNTgxOTNjMzg0ZGVhZGFiNTMyZjhiYzEyIiwiaWF0IjoxNTk3NTc2NzAxLCJuYmYiOjE1OTc1NzY3MDEsImV4cCI6MTU5NzY2MzEwMCwic3ViIjoiIiwic2NvcGVzIjpbIioiXX0.GxEvT97tHjnO6I5CXHLmp9elZ4EljC4-MjuFwCHu5Bos23S9C25vEQ9awcC43w100jBiYfRKw5SZM2U10COpOOKf8MfW7emJVOUANx6QoO7yDB5XzGDfEGjjCSla2qcrLaNE0GMm0NdjrcFNRMsUwZEn-_qL5iR4SuCDdiLcFU8YoCWHk9zCvX-YtBbOmRfU2aDGJJos2F9UrgqwKEgJ8LPVxzqlkS6-H9pQ4S7jkfTwMZTITNX_n8rvnMVmNlnplmLPAsYbIgGCDowueTQaVgRso3_0MiTvGqsDqn1Dtfo_k4ZjmM13dbbKJTHG2n2XigcHsVJXvWdbIL1ctjmow_17kErD2zyHqVXhwIfyzYRa64uTTBYnlC9rdR5HWftX6vIhgYobvjIvLqV9rWc-0Ats5w1SejNs-4eoUgUnScMwwaoFj4bCCKP8b2EA5PS2BLrOQEQFpy7UE6GD4iE9xRvDvyWT1k9SWW3pc4TZfKNZadatg2G3yoO_O54aItu3vQC83_u8KmGewtGZnJz0vGw307UOCzACQdlLY7tYX0yZYxnDV0ah6yThmx1Evqs93In8-4K8sQXr0St-l77e8_Va7iVmAPVTOQPAI9UClPcbYMXw_bdNZJOGSfPyKBtHoy3NVvdX5m2EPfqk3SDRRAO9JPyFz2OmyFPIBPFow30",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMSIsImp0aSI6IjI5ODc4NzRjOWEzNGE0ZGFiNzlhYzhlMWU1NWI3NTRjMWJmMjFhYmY5NzIxZWQ4NmIxZWIxYjM3M2Y0ZWZkZjk1Y2E4NWM0NTA1MTRkODNlIiwiaWF0IjoxNTk3NTg5MDc4LCJuYmYiOjE1OTc1ODkwNzgsImV4cCI6MTU5NzY3NTQ3Nywic3ViIjoiIiwic2NvcGVzIjpbIioiXX0.boM3_u2p5YTOQdxZwAHPUGvbDoK7EfvYUzJLr8ysqYmYgWDhBRKwxYRtUrle-PV-wEybx6997AkS8cBjNy5oSLeKP6XkTSeOwfptkfYRze9m45ZExiKmyfyAeZsBftxdHU61B4FsvgLV19PgMWy2LBrDW0qHKpCtpAyJxBPSRg43hbgJ-ZZjwJe4CBywFjOGL44H2BA8SH9g9fcNu7kexbFqNa3lXkBmohf19f80NOJBe7ISjiEM6b63d97bcoqHbld7KryGevdQQixxT3bQXpMH4d-mRtAFFooH-MHcHdrrMkDT9L7ZvV_BrpR2XHLSnnx8-YHVPko_TPNAXC46JaXY3pkkYm_gCqGAUuJ8EKM6KDDpxVfpn85ttp2EpHb9iptb4paVRL3Bft2KqN-q_bDgU6swO2AHIOwlVWkUBOfnRLkDiiYo5rlzLoR84TGI3UkFOeAp4TM0ezGYV5pXUWMYCoC_SY4_UC58U9Xwd-GbeOb-B5W1b-gA1ri411x4HSJ31DJbElukzSiUkNSm0OXsAYDuK7uYs1bAyx1oR-Ow5n8o-IKgSc7Rk4grTV-kKmOYHCZsSWd7MYMcRX4iOMJpmer8qmIegLg7LtN5rUBq9QKl1rS9nqW4KlHVHJw6jwDj5eQh9jzwVDjQu4ioXXJlqV6U7E6RSXhOuKbp07E",
 											"type": "string"
 										}
 									]
@@ -445,7 +479,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{   \n    \"id\":\"43\",\n    \"title\":\"some title\",\n    \"plan\":\"gold\"\n}",
+									"raw": "{   \n    \"title\":\"some title\",\n    \"plan_id\":\"6\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -595,49 +629,6 @@
 							"response": []
 						},
 						{
-							"name": "set",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMSIsImp0aSI6IjlkMDJiNmY0YjA1YWMzZDYyZTg0NjFjY2Q1MzgzNjJhMTY0ZDM2NjBiNjE5YjIwZDM4OTg5M2EzNTgxOTNjMzg0ZGVhZGFiNTMyZjhiYzEyIiwiaWF0IjoxNTk3NTc2NzAxLCJuYmYiOjE1OTc1NzY3MDEsImV4cCI6MTU5NzY2MzEwMCwic3ViIjoiIiwic2NvcGVzIjpbIioiXX0.GxEvT97tHjnO6I5CXHLmp9elZ4EljC4-MjuFwCHu5Bos23S9C25vEQ9awcC43w100jBiYfRKw5SZM2U10COpOOKf8MfW7emJVOUANx6QoO7yDB5XzGDfEGjjCSla2qcrLaNE0GMm0NdjrcFNRMsUwZEn-_qL5iR4SuCDdiLcFU8YoCWHk9zCvX-YtBbOmRfU2aDGJJos2F9UrgqwKEgJ8LPVxzqlkS6-H9pQ4S7jkfTwMZTITNX_n8rvnMVmNlnplmLPAsYbIgGCDowueTQaVgRso3_0MiTvGqsDqn1Dtfo_k4ZjmM13dbbKJTHG2n2XigcHsVJXvWdbIL1ctjmow_17kErD2zyHqVXhwIfyzYRa64uTTBYnlC9rdR5HWftX6vIhgYobvjIvLqV9rWc-0Ats5w1SejNs-4eoUgUnScMwwaoFj4bCCKP8b2EA5PS2BLrOQEQFpy7UE6GD4iE9xRvDvyWT1k9SWW3pc4TZfKNZadatg2G3yoO_O54aItu3vQC83_u8KmGewtGZnJz0vGw307UOCzACQdlLY7tYX0yZYxnDV0ah6yThmx1Evqs93In8-4K8sQXr0St-l77e8_Va7iVmAPVTOQPAI9UClPcbYMXw_bdNZJOGSfPyKBtHoy3NVvdX5m2EPfqk3SDRRAO9JPyFz2OmyFPIBPFow30",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{   \n    \"name\":\"new4\",\n    \"name_fa\" :\"نام\",\n    \"description\":\"some desc\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}/admin/plan",
-									"host": [
-										"{{localhost}}"
-									],
-									"path": [
-										"admin",
-										"plan"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "update",
 							"request": {
 								"auth": {
@@ -710,6 +701,49 @@
 										"admin",
 										"plan",
 										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "set",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMSIsImp0aSI6ImM3MzQyMTc5MTZmMGM0ODI2MmM2NGMzOGI4MjUwNjg0OTNiZWZlYTU0ZTkyMTY4ODE4OTg5MDJjMDdlMjY5YzU4ZGExMmY4MDMzOTMxOTA4IiwiaWF0IjoxNTk3NjU1MzM1LCJuYmYiOjE1OTc2NTUzMzUsImV4cCI6MTU5Nzc0MTczNCwic3ViIjoiIiwic2NvcGVzIjpbIioiXX0.cUFWnkS6LWvByI2_UeftsCVt43K2gIO6g0AR2nxM_0jo84bFbvTZ59ENPhy7nZkBIAByWktag6FX92-TL2MlIUshZU8w0_Wy_v2svY7kJfhzHd_Xh9CSwSefZ6SsItu-YBDMB6oO3eXBphskcVLOqbk60m1hOF9jlS6PWrCidSLsZemZupGSMRsoc7ZIxKV4gjbw0hYq_SywD-fTuDlqTBdfC6aDyUt7T7CdK8ku3fqDKjHSLRRBVidNXKc-prTZG34GZDg4NVxVlWFyioj66NY8g73HivZA-Bb-88BplUJux0YzoWvpS2YoGNM6RnAEjUe9dq7UZDa30SdyM8do4FYNVlN90T_u_a1_B9ZpDVJIcS9OqwhAIYwV_Po_ESB4abhchyHrtUExyuATBVl9-WaKH9Iml2YOPf6q9RVk20LfSKjU4_NzmMb-ySz9YagDQdenYSubCk4DPF1VhGxC3OnTLMpLT40RZJ7WgN5-JOEHqfbDm_1jm2uI3z6aZqDyN9YBFJ3_-ZV3RyXWApbvBOE9QBWJpPUkwLTvGzgDqN_zc837fyVeN5EifTiVVzUm8w7XiCo9TSEy4m-B7Wgu1-Em9arHiSs_6mfN5s_l2J4LmRDzs_dOmDSNIOtr9HpReDpxBf0rHXrmpDA6x40ACPgERfLzv21xFokboohalPU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \n    \"name\":\"ss828\",\n    \"title\" :\"نام فارس\",\n    \"description\" : \"some desc\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/admin/plan",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"admin",
+										"plan"
 									]
 								}
 							},

@@ -2,11 +2,9 @@
 
 namespace Member\app\Http\Requests\Role;
 
-use Category\app\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
-use Member\app\Models\Trainer;
 
-class UpdateRoleRequest extends FormRequest
+class RegisterRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,16 +24,12 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric|exists:roles,id',
-            'name' => 'required|string',
-            'description' => 'string'
+            'plan_id' => 'required|numeric|exists:plans,id'
         ];
     }
 
-
-    public function getData()
+    public function getData($keys = null)
     {
-        return $this->only('id','name','description');
+        return $this->only('plan_id');
     }
-
 }

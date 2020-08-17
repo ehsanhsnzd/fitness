@@ -55,9 +55,8 @@ interface Repository
 
 
     /**
-     * @param string $param
-     * @param $value
+     * @param array $params
      * @return mixed
      */
-    public function where(string $param,$value);
+    public function where(array $params);
 }

@@ -5,18 +5,19 @@ namespace Core\app\Services;
 
 use Core\app\repositories\CategoryRepository;
 use Core\app\repositories\PermissionRepository;
+use Core\app\repositories\PlanRepository;
 use Core\app\repositories\RoleRepository;
 
 class CategoryService
 {
     private $repo;
-    private $roleRepo;
+    private $planRepo;
     private $permissionRepo;
 
     public function __construct( $repository = null)
     {
         $this->repo = $repository ?? new CategoryRepository();
-        $this->roleRepo = new RoleRepository();
+        $this->planRepo = new PlanRepository();
         $this->permissionRepo = new PermissionRepository();
     }
 
@@ -40,12 +41,13 @@ class CategoryService
      */
     public function set($request)
     {
+        $plan = $this->planRepo->find($request['plan_id']);
         $category = $this->repo->create($request);
-        $role = $this->roleRepo->where('name',$request['plan'])->first();
         $permission = $this->permissionRepo->create([
             'name' => 'category.'.$category->id,
             'guard_name' => 'users'
         ]);
+        $role = $plan->role()->first();
         $role->givePermissionTo($permission);
 
         return [
