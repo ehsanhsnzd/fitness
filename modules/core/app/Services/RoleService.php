@@ -7,6 +7,7 @@ namespace Core\app\Services;
 use Core\app\repositories\PlanRepository;
 use Core\app\repositories\RoleRepository;
 use Member\app\Repositories\UserRepository;
+use phpDocumentor\Reflection\Types\Mixed_;
 
 class RoleService
 {
@@ -17,7 +18,7 @@ class RoleService
     private $userRepo;
     private $planRepo;
 
-    public function __construct($repo= null)
+    public function __construct($repo = null)
     {
         $this->repo = $repo ?? new RoleRepository();
         $this->userRepo = new UserRepository();
@@ -36,10 +37,15 @@ class RoleService
 
     public function set($request)
     {
+        $plan = $this->planRepo->create($request);
+        $request['name'] = $plan->id;
         $request['guard_name'] = 'users';
         $role = $this->repo->create($request);
-        $request['role_id'] = $role->id;
-        return $this->planRepo->create($request)->toArray();
+        $plan->role_id = $role->id;
+        $plan->save();
+        return [
+            $plan
+        ];
     }
 
     public function edit($request)

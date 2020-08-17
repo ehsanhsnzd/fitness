@@ -24,7 +24,6 @@ class SetRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
             'title' => 'required|string',
             'description' => 'string'
         ];
@@ -32,6 +31,6 @@ class SetRoleRequest extends FormRequest
 
     public function getData()
     {
-        return $this->only('name','title','description');
+        return $this->only('title','description');
     }
 }
