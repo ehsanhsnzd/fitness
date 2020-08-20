@@ -5,22 +5,31 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Client as oClient;
 use Member\app\Models\User;
+use Member\app\Repositories\UserRepository;
 
 class UserService
 {
+    /**
+     * @var UserRepository
+     */
+    private $repo;
+
+    public function __construct()
+    {
+        $this->repo = new UserRepository();
+    }
     public function register($request)
     {
 
         $password = request('password');
-        $input = $request->all();
-        $input['password'] = bcrypt($password);
-        User::create($input);
+        $request['password'] = bcrypt($password);
+        $this->repo->create($request);
         $oClient = OClient::where('password_client', 1)->first();
         $params = ['form_params' => [
         'grant_type' => 'password',
         'client_id' => $oClient->id,
         'client_secret' => $oClient->secret,
-        'username' => $request->mobile,
+        'username' => $request['mobile'],
         'password' => $password,
         'scope' => '*',
         ]];

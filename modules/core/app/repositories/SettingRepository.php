@@ -1,33 +1,33 @@
 <?php
 
 
-namespace Member\app\Repositories;
+namespace Core\app\repositories;
 
 
-use Core\app\repositories\Repository;
+use Core\app\Models\Setting;
 use Illuminate\Database\Eloquent\Collection;
-use Member\app\Models\User;
 
-class UserRepository implements Repository
+class SettingRepository implements Repository
 {
     /**
-     * @var User
-     */
+    * @var mixed|null
+    */
     private $model;
 
-    public function __construct()
-    {
-        $this->model = new User();
+    public function __construct(){
+        $this->model = new Setting();
     }
 
     public function find(int $id)
     {
-        $this->model->find($id);
+        return $this->model->find($id);
     }
 
-    public function fetch(string $id, array $relations):Collection
+    public function fetch(string $id, array $relations,$field = null):Collection
     {
-        // TODO: Implement fetch() method.
+        return $this->where([$field ?? 'id'=>$id])
+            ->with($relations)
+            ->get();
     }
 
     public function model(int $id)
@@ -47,16 +47,16 @@ class UserRepository implements Repository
 
     public function update(int $id, array $params)
     {
-        // TODO: Implement update() method.
+        return $this->find($id)->update($params);
     }
 
     public function delete(int $id)
     {
-        // TODO: Implement delete() method.
+        $this->find($id)->delete();
     }
 
     public function where(array $params)
     {
-        // TODO: Implement where() method.
+        return $this->model->where($params);
     }
 }

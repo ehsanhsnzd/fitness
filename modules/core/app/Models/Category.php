@@ -21,4 +21,13 @@ class Category extends Model
             ->with('nodes');
     }
 
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class,'plan_id','id');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class,'category_id','id');
+    }
 }

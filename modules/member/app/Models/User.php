@@ -59,14 +59,17 @@ class User extends Authenticatable
             return parent::can($abilities,$arguments);
     }
 
-    public function selectedPlans()
+    public function selectedRoles()
     {
-        return $this->belongsToMany(Role::class,'selected_roles','user_id','role_id');
+        return $this->belongsToMany(Role::class,'selected_roles','user_id','role_id')
+            ->withPivot('active');
     }
 
-    public function plan()
+    public function plan($group)
     {
-        return $this->belongsTo(Plan::class,'plan_id','id');
+        return $this->belongsToMany(Plan::class,'user_plans','user_id','plan_id')
+            ->withPivot('expire_date','start_date')
+            ->wherePivot('plan_group','=',$group);
     }
 
     public function findForPassport($username)

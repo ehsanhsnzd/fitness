@@ -1,28 +1,28 @@
 <?php
 
 
-namespace Member\app\Repositories;
+namespace Core\app\repositories;
 
 
-use Core\app\repositories\Repository;
+use Core\app\Models\Item;
 use Illuminate\Database\Eloquent\Collection;
-use Member\app\Models\User;
 
-class UserRepository implements Repository
+class ItemRepository implements Repository
 {
+
     /**
-     * @var User
+     * @var ItemRepository
      */
     private $model;
 
     public function __construct()
     {
-        $this->model = new User();
+        $this->model = new Item();
     }
 
     public function find(int $id)
     {
-        $this->model->find($id);
+        return $this->model->find($id);
     }
 
     public function fetch(string $id, array $relations):Collection
@@ -42,17 +42,17 @@ class UserRepository implements Repository
 
     public function create(array $params)
     {
-        return $this->model->create($params);
+       return $this->model->create($params);
     }
 
     public function update(int $id, array $params)
     {
-        // TODO: Implement update() method.
+        return $this->find($id)->update($params);
     }
 
     public function delete(int $id)
     {
-        // TODO: Implement delete() method.
+        $this->find($id)->delete();
     }
 
     public function where(array $params)

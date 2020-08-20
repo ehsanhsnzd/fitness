@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Core\app\Models\Category;
+use Core\app\Policies\CategoryPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Gate;
@@ -26,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        Gate::policy(Category::class,CategoryPolicy::class);
+
         Passport::enableImplicitGrant();
         Passport::routes();
         Passport::tokensExpireIn(Carbon::now()->addDays(1));

@@ -1,13 +1,13 @@
 <?php
 
-namespace Member\app\Http\Requests\Category;
+namespace Member\app\Http\Requests\Item;
 
-use Core\app\Models\Category;
 use Core\app\repositories\CategoryRepository;
+use Core\app\repositories\ItemRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 
-class GetCategoryRequest extends FormRequest
+class GetItemRequest extends FormRequest
 {
     /**
      * @var CategoryRepository
@@ -19,7 +19,7 @@ class GetCategoryRequest extends FormRequest
      */
     public function __construct()
     {
-        $this->repo = new CategoryRepository();
+        $this->repo = new ItemRepository();
     }
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,12 @@ class GetCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user('users-api')->can('getCategory',Category::find($this->id));
+        $item = $this->repo->find($this->id);
+
+        if(!$this->user('users-api')->can('category.'.$item->category_id,$item->category_id))
+            throw new AccessDeniedException('dont have access');
+        else
+            return true;
     }
 
     /**

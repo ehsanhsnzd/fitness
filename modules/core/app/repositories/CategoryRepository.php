@@ -64,7 +64,7 @@ class CategoryRepository implements Repository
      * @param array $relations
      * @return mixed
      */
-    public function fetch(int $id, array $relations):Collection
+    public function fetch(string $id, array $relations):Collection
     {
         return $this->model->where('id',$id)
             ->with($relations)

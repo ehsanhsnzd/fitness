@@ -21,7 +21,7 @@ interface Repository
      * @param array $relations
      * @return mixed
      */
-    public function fetch(int $id,array $relations);
+    public function fetch(string $id,array $relations):Collection;
 
     /**
      * @param int $id

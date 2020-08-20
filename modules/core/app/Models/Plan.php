@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role;
 
 class Plan extends Model
 {
-    protected $fillable=['title','description','expire_days','role_id'];
+    protected $fillable=['title','description','expire_days','role_id','group'];
 
 
     public function role()

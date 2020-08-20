@@ -31,8 +31,14 @@ Route::group(['prefix'=>'member/'],function(){
             Route::get('{id}', 'CategoryController@get');
         });
 
+        Route::group(['prefix'=>'item/'],function () {
+            Route::get('media/{id}', 'ItemController@media');
+            Route::get('file/{id}', 'ItemController@file');
+            Route::get('{id}', 'ItemController@get');
+        });
+
         Route::group(['prefix'=>'plan/'],function () {
-            Route::get('', 'RoleController@all');
+            Route::get('group/{group}', 'RoleController@all');
             Route::post('register', 'RoleController@register');
             Route::get('{id}', 'RoleController@get');
         });

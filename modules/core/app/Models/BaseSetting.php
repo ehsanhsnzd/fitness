@@ -24,7 +24,7 @@ class BaseSetting extends Model
      */
     public function settings()
     {
-        return $this->hasMany(Admin::class,'base_setting_id','id');
+        return $this->hasMany(Setting::class,'base_setting_id','id');
     }
 
 }

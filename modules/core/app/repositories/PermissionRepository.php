@@ -25,7 +25,7 @@ class PermissionRepository implements Repository
         // TODO: Implement find() method.
     }
 
-    public function fetch(int $id, array $relations)
+    public function fetch(string $id, array $relations):Collection
     {
         // TODO: Implement fetch() method.
     }

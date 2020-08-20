@@ -21,7 +21,7 @@ class RoleController extends BaseController
     public function all(Request $request)
     {
         try{
-            return $this->setMetaData($this->service->all())->successResponse();
+            return $this->setMetaData($this->service->all($request))->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }

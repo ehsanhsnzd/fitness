@@ -29,7 +29,7 @@ class CategoryService
      */
     public function get($request)
     {
-        $categories = $this->repo->fetch($request['id'],['nodes']);
+        $categories = $this->repo->fetch($request['id'],['nodes','items']);
 
         return
             $categories->toArray();

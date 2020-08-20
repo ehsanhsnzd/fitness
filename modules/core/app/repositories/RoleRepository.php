@@ -19,7 +19,7 @@ class RoleRepository implements Repository
         return $this->model->find($id);
     }
 
-    public function fetch(int $id, array $relations)
+    public function fetch(string $id, array $relations):Collection
     {
         // TODO: Implement fetch() method.
     }
