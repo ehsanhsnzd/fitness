@@ -77,4 +77,9 @@ class User extends Authenticatable
         return $this->where('mobile', $username)->first();
     }
 
+    public function personalPlan()
+    {
+        return $this->hasMany(UserIndividualPlan::class,'user_id','id');
+    }
+
 }

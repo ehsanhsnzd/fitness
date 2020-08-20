@@ -42,6 +42,20 @@ Route::group(['prefix'=>'member/'],function(){
             Route::post('register', 'RoleController@register');
             Route::get('{id}', 'RoleController@get');
         });
+
+        Route::group(['prefix'=>'personal/plan/'],function () {
+            Route::post('', 'PersonalPlanController@set');
+            Route::put('', 'PersonalPlanController@edit');
+            Route::delete('{id}', 'PersonalPlanController@delete');
+            Route::get('{id}', 'PersonalPlanController@get');
+        });
+
+        Route::group(['prefix'=>'personal/item/'],function () {
+            Route::post('', 'PersonalItemController@set');
+            Route::put('', 'PersonalItemController@edit');
+            Route::delete('{id}', 'PersonalItemController@delete');
+            Route::get('{id}', 'PersonalItemController@get');
+        });
     });
 
 });
