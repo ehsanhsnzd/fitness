@@ -4,23 +4,18 @@
 namespace Member\app\Services;
 
 
+use Core\app\Services\BaseService;
 
-use Core\app\repositories\BaseRepository;
-
-class PersonalPlanService
+class PersonalPlanService extends BaseService
 {
-    /**
-    * @var mixed|null
-    */
-    private $repo;
     /**
      * @var \Illuminate\Contracts\Auth\Authenticatable|null
      */
     private $user;
 
     public function __construct($model = NULL){
-        $this->repo = new BaseRepository($model);
         $this->user = auth()->guard('users-api')->user();
+        parent::__construct($model);
     }
 
     public function get($request)
@@ -33,15 +28,4 @@ class PersonalPlanService
         return $this->user->personalPlan()->create($request)->toArray();
     }
 
-    public function edit($request)
-    {
-        return [
-            $this->repo->update($request['id'],$request)
-        ];
-    }
-
-    public function delete($request)
-    {
-        $this->repo->delete($request['id']);
-    }
 }
