@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
+use Laravel\Passport\Exceptions\InvalidAuthTokenException;
 use Symfony\Component\CssSelector\Exception\InternalErrorException;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -51,7 +52,7 @@ trait ExceptionHandler
         } elseif($e instanceof InternalErrorException ) {
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(500,$httpCode),$e->getCode(),$status);
 
-        }elseif($e instanceof TokenExpiredException) {
+        }elseif($e instanceof InvalidAuthTokenException) {
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(404,$httpCode),$e->getCode(),$status);
 
         }elseif($e instanceof AuthorizationException) {
@@ -61,7 +62,6 @@ trait ExceptionHandler
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(401,$httpCode),$e->getCode(),$status);
 
         }elseif($e instanceof QueryException) {
-            return $e;
             return $this->handle($e, $e->getMessage(), $this->getHttpCode(409, $httpCode), $e->getCode(), $status);
         } elseif($e instanceof UnexpectedValueException) {
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(400,$httpCode),$e->getCode(),$status);
@@ -70,8 +70,8 @@ trait ExceptionHandler
             $e = $this->convertValidationExceptionToResponse($e, $request);
             return $this->setMetaData([], ["validation" => $e->getOriginalContent()])->badRequestResponse();
         }else {
-            return $e;
-            return $this->customResponse($e,$status,500,$e->getCode());
+//            return $e;
+//            return $this->customResponse($e,$status,500,$e->getCode());
             return $this->failedResponse();
         }
 
