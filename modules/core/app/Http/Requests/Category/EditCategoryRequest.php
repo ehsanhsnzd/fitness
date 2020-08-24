@@ -26,13 +26,15 @@ class EditCategoryRequest extends FormRequest
         return [
             'id'    =>  'required|numeric',
             'title' => 'required|string',
-            'plan'  => 'required|string|exists:roles,name'
+            'plan'  => 'required|string|exists:roles,name',
+            'parent_id' => 'numeric',
+            'public' => 'bool'
         ];
     }
 
 
     public function getData()
     {
-        return $this->only('id','title','plan');
+        return $this->only('id','title','plan','parent_id','public');
     }
 }

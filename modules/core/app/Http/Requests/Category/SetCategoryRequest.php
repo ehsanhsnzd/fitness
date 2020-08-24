@@ -25,13 +25,15 @@ class SetCategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'plan_id'  => 'required|string|exists:plans,id'
+            'plan_id'  => 'required|string|exists:plans,id',
+            'parent_id' => 'numeric',
+            'public' => 'bool'
         ];
     }
 
 
     public function getData()
     {
-        return $this->only('title','plan_id');
+        return $this->only('title','plan_id','parent_id','public');
     }
 }

@@ -30,6 +30,13 @@ class RoleService
 
     public function all($request)
     {
+        return
+            $this->repo->fetch($request->group,['categories'],'group')
+                ->toArray();
+    }
+
+    public function current($request)
+    {
         return $this->user->plan($request->group)
             ->with('categories')
             ->get()

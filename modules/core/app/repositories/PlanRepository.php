@@ -23,9 +23,11 @@ class PlanRepository implements Repository
         return $this->model->find($id);
     }
 
-    public function fetch(string $id, array $relations):Collection
+    public function fetch(string $id, array $relations,$field = null):Collection
     {
-        // TODO: Implement fetch() method.
+        return $this->where([$field ?? 'id'=>$id])
+            ->with($relations)
+            ->get();
     }
 
     public function model(int $id)

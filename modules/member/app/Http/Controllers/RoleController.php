@@ -27,6 +27,15 @@ class RoleController extends BaseController
         }
     }
 
+    public function current(Request $request)
+    {
+        try{
+            return $this->setMetaData($this->service->current($request))->successResponse();
+        }catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
+    }
+
     public function get(GetRoleRequest $request)
     {
         try{

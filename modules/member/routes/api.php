@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::group(['prefix'=>'member/'],function(){
 
     Route::group(['namespace'=>'Member\app\Http\Controllers'],function (){
@@ -38,7 +39,8 @@ Route::group(['prefix'=>'member/'],function(){
         });
 
         Route::group(['prefix'=>'plan/'],function () {
-            Route::get('group/{group}', 'RoleController@all');
+            Route::get('group/{group}', 'RoleController@current');
+            Route::get('group/{group}/all', 'RoleController@all');
             Route::post('register', 'RoleController@register');
             Route::get('{id}', 'RoleController@get');
         });

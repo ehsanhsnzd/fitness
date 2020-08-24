@@ -21,6 +21,9 @@ class CoreServiceProvider extends ServiceProvider
     {
         //INSERT PACKAGE ROUTES
         $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
+
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+
     }
 }
 
