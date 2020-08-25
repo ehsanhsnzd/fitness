@@ -5,8 +5,9 @@ namespace Member\app\Services;
 
 
 use Core\app\Services\BaseService;
+use Member\app\Models\UserDedicatedPlan;
 
-class PersonalPlanService extends BaseService
+class DedicatedPlanService extends BaseService
 {
     /**
      * @var \Illuminate\Contracts\Auth\Authenticatable|null
@@ -20,12 +21,15 @@ class PersonalPlanService extends BaseService
 
     public function get($request)
     {
-        return $this->repo->fetch($request->id,['items'])->toArray();
+//        return $this->repo->fetch($request->id,['items.item,itemInfo']);
+        return (new UserDedicatedPlan())->find(1)
+            ->items()->with('item','itemInfo')
+            ->get()->toArray();
     }
 
     public function set($request)
     {
-        return $this->user->personalPlan()->create($request)->toArray();
+        return $this->user->dedicatedPlan()->create($request)->toArray();
     }
 
 }

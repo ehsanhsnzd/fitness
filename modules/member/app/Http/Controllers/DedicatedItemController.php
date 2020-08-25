@@ -6,9 +6,9 @@ namespace Member\app\Http\Controllers;
 
 use Core\app\Http\Controllers\AbstractController;
 use Core\app\Services\BaseService;
-use Member\app\Models\UserIndividualItem;
+use Member\app\Models\UserDedicatedItem;
 
-class PersonalItemController extends AbstractController
+class DedicatedItemController extends AbstractController
 {
     /**
     * @var mixed|null
@@ -17,7 +17,7 @@ class PersonalItemController extends AbstractController
 
     public function __construct($service = NULL){
         $this->service =
-            new BaseService(UserIndividualItem::class);
+            new BaseService(UserDedicatedItem::class);
     }
 
 }

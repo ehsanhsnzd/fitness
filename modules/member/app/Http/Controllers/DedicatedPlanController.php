@@ -6,10 +6,10 @@ namespace Member\app\Http\Controllers;
 
 use Core\app\Http\Controllers\AbstractController;
 use Core\app\repositories\BaseRepository;
-use Member\app\Models\UserIndividualPlan;
-use Member\app\Services\PersonalPlanService;
+use Member\app\Models\UserDedicatedPlan;
+use Member\app\Services\DedicatedPlanService;
 
-class PersonalPlanController extends AbstractController
+class DedicatedPlanController extends AbstractController
 {
     /**
     * @var mixed|null
@@ -18,7 +18,7 @@ class PersonalPlanController extends AbstractController
 
     public function __construct($service = NULL){
         $this->service =
-            new PersonalPlanService(UserIndividualPlan::class);
+            new DedicatedPlanService(UserDedicatedPlan::class);
     }
 
 }

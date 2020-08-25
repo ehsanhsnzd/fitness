@@ -45,11 +45,11 @@ Route::group(['prefix'=>'member/'],function(){
             Route::get('{id}', 'RoleController@get');
         });
 
-        Route::group(['prefix'=>'personal/plan/'],function () {
-            Route::post('', 'PersonalPlanController@set');
-            Route::put('', 'PersonalPlanController@edit');
-            Route::delete('{id}', 'PersonalPlanController@delete');
-            Route::get('{id}', 'PersonalPlanController@get');
+        Route::group(['prefix'=>'dedicated/plan/'],function () {
+            Route::post('', 'DedicatedPlanController@set');
+            Route::put('', 'DedicatedPlanController@edit');
+            Route::delete('{id}', 'DedicatedPlanController@delete');
+            Route::get('{id}', 'DedicatedPlanController@get');
         });
 
         Route::group(['prefix'=>'personal/item/'],function () {
