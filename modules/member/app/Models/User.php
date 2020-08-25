@@ -43,21 +43,21 @@ class User extends Authenticatable
         'expire_date' => 'datetime',
     ];
 
-    /** permission for plan expire date
+/*    /** permission for plan expire date
      * @param iterable|string $abilities
      * @param array $arguments
      * @return bool
      * @throws AccessDeniedException
      */
 
-
+/*
     public function can($abilities, $arguments = [])
     {
         if($this->expire_date<= now() || $this->expire_date == null)
             throw new AccessDeniedException('dont have any plan');
 
-            return parent::can($abilities,$arguments);
-    }
+        return parent::can($abilities,$arguments);
+    }*/
 
     public function selectedRoles()
     {

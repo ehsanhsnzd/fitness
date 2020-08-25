@@ -88,7 +88,7 @@ class RoleService
         /** assign roles */
         $selected->syncWithoutDetaching($plan->role_id);
         return [
-            $user->assignRole($plan->role()->first()->name)
+            $user->assignRole($plan->role()->first()->id)
         ];
     }
 
