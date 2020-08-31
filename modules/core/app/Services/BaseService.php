@@ -14,7 +14,7 @@ class BaseService
     /**
      * @var Item
      */
-    protected $repo;
+    public $repo;
 
     public function __construct($model)
     {

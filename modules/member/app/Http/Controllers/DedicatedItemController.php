@@ -20,4 +20,5 @@ class DedicatedItemController extends AbstractController
             new BaseService(UserDedicatedItem::class);
     }
 
+
 }
