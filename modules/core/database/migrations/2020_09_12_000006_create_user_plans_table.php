@@ -19,7 +19,6 @@ class CreateUserPlansTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('plan_id');
             $table->foreign('plan_id')->references('id')->on('plans');
-            $table->string('plan_group');
             $table->timestamp('start_date');
             $table->timestamp('expire_date');
             $table->timestamps();

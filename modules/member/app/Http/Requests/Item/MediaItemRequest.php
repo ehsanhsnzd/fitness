@@ -2,10 +2,24 @@
 
 namespace Member\app\Http\Requests\Item;
 
+use Core\app\repositories\CategoryRepository;
+use Core\app\repositories\ItemRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MediaItemRequest extends FormRequest
 {
+    /**
+     * @var CategoryRepository
+     */
+    private $repo;
+    private $categoryRepo;
+
+    public function __construct()
+    {
+        $this->repo = new ItemRepository();
+        $this->categoryRepo = new CategoryRepository();
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +27,9 @@ class MediaItemRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $item = $this->repo->find($this->id);
+        $category = $this->categoryRepo->find($item->category_id);
+        return $this->user('users-api')->can('getCategory',$category);
     }
 
     /**

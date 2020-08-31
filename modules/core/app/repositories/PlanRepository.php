@@ -37,7 +37,7 @@ class PlanRepository implements Repository
 
     public function all(): Collection
     {
-        // TODO: Implement all() method.
+        return $this->model->all();
     }
 
     public function create(array $params)

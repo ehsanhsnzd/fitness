@@ -26,7 +26,6 @@ class SetCategoryRequest extends FormRequest
         return [
             'title' => 'required|string',
             'plan_id'  => 'required|string|exists:plans,id',
-            'parent_id' => 'numeric',
             'public' => 'bool'
         ];
     }

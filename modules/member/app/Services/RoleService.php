@@ -28,16 +28,15 @@ class RoleService
         $this->user = auth()->guard('users-api')->user();
     }
 
-    public function all($request)
+    public function all()
     {
         return
-            $this->repo->fetch($request->group,['categories'],'group')
-                ->toArray();
+            $this->repo->all()->toArray();
     }
 
-    public function current($request)
+    public function current()
     {
-        return $this->user->plan($request->group)
+        return $this->user->plan()
             ->with('categories')
             ->get()
             ->toArray();
@@ -54,39 +53,45 @@ class RoleService
      */
     public function register($request)
     {
-        $selected =$this->user->selectedRoles();
-        $plan = $this->repo->find($request['plan_id']);
+//        $selected =$this->user->selectedRoles();
         /** if registered before  */
-        $active = $selected->where([
-                'role_id'   => $plan->role_id
-            ])->first()
-              ->pivot->active ?? false;
-
-
-        if($selected->get()->find($plan->role_id) && !$active)
-            throw new AccessDeniedException('registered once before');
+//        $active = $selected->where([
+//                'role_id'   => $plan->role_id
+//            ])->first()
+//              ->pivot->active ?? false;
+//
+//
+//        if($selected->get()->find($plan->role_id) && !$active)
+//            throw new AccessDeniedException('registered once before');
 
         /** add from settings */
+
+//        DB::table('user_plans')->updateOrInsert([
+//            'user_id'       => $this->user->id,
+//            'plan_group'       => $plan->group,
+//        ],[
+//            'user_id'       => $user->id,
+//            'plan_id'       => $plan->id,
+//            'start_date'    => Carbon::now(),
+//            'expire_date'   => Carbon::now()->addDays((int)$freeDays),
+//            'plan_group'    => $plan->group
+//        ]);
+
+//        /** remove all roles */
+//        $selected->wherePivot('active',true)->pluck('name')->map(function ($key) use ($user){
+//            $user->removeRole($key);
+//        });
+//
+//        /** assign roles */
+//        $selected->syncWithoutDetaching($plan->role_id);
+
+        $plan = $this->repo->find($request['plan_id']);
         $freeDays = $this->setting->name('free_days');
         $user = $this->user;
-        DB::table('user_plans')->updateOrInsert([
-            'user_id'       => $this->user->id,
-            'plan_group'       => $plan->group,
-        ],[
-            'user_id'       => $user->id,
-            'plan_id'       => $plan->id,
-            'start_date'    => Carbon::now(),
-            'expire_date'   => Carbon::now()->addDays((int)$freeDays),
-            'plan_group'    => $plan->group
-        ]);
+        $user->expire_date = Carbon::now()->addDays($freeDays);
+        $user->start_date = Carbon::now();
+        $user->save();
 
-        /** remove all roles */
-        $selected->wherePivot('active',true)->pluck('name')->map(function ($key) use ($user){
-            $user->removeRole($key);
-        });
-
-        /** assign roles */
-        $selected->syncWithoutDetaching($plan->role_id);
         return [
             $user->assignRole($plan->role()->first()->id)
         ];

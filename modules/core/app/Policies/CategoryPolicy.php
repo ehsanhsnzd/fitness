@@ -21,8 +21,7 @@ class CategoryPolicy
         if(isset($category) && $category->public)
             return true;
 
-        $plan = $category->plan()->first();
-        if ($user->plan($plan->group)->first()->pivot->expire_date<= Carbon::now() ||
+        if ($user->expire_date<= Carbon::now() ||
             !$user->can('category.'.$category->id))
             throw new AccessDeniedException('dont have access');
 

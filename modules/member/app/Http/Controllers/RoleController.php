@@ -21,7 +21,7 @@ class RoleController extends BaseController
     public function all(Request $request)
     {
         try{
-            return $this->setMetaData($this->service->all($request))->successResponse();
+            return $this->setMetaData($this->service->all())->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }
@@ -30,7 +30,7 @@ class RoleController extends BaseController
     public function current(Request $request)
     {
         try{
-            return $this->setMetaData($this->service->current($request))->successResponse();
+            return $this->setMetaData($this->service->current())->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }

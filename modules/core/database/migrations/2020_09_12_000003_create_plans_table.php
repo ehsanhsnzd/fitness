@@ -18,7 +18,6 @@ class CreatePlansTable extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->integer('expire_days')->nullable();
-            $table->string('group');
             $table->unsignedBigInteger('role_id')->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
             $table->timestamps();

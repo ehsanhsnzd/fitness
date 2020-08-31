@@ -13,13 +13,14 @@ class GetItemRequest extends FormRequest
      * @var CategoryRepository
      */
     private $repo;
-
+    private $categoryRepo;
     /**
      * GetCategoryRequest constructor.
      */
     public function __construct()
     {
         $this->repo = new ItemRepository();
+        $this->categoryRepo = new CategoryRepository();
     }
     /**
      * Determine if the user is authorized to make this request.
@@ -29,11 +30,8 @@ class GetItemRequest extends FormRequest
     public function authorize()
     {
         $item = $this->repo->find($this->id);
-
-        if(!$this->user('users-api')->can('category.'.$item->category_id,$item->category_id))
-            throw new AccessDeniedException('dont have access');
-        else
-            return true;
+        $category = $this->categoryRepo->find($item->category_id);
+        return $this->user('users-api')->can('getCategory',$category);
     }
 
     /**

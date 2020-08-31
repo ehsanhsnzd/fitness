@@ -39,8 +39,8 @@ Route::group(['prefix'=>'member/'],function(){
         });
 
         Route::group(['prefix'=>'plan/'],function () {
-            Route::get('group/{group}', 'RoleController@current');
-            Route::get('group/{group}/all', 'RoleController@all');
+            Route::get('', 'RoleController@current');
+            Route::get('all', 'RoleController@all');
             Route::post('register', 'RoleController@register');
             Route::get('{id}', 'RoleController@get');
         });

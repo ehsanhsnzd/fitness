@@ -1,10 +1,11 @@
 <?php   namespace Member\app\Services;
 
 
+use Carbon\Carbon;
+use Core\app\Services\SettingService;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Client as oClient;
-use Member\app\Models\User;
 use Member\app\Repositories\UserRepository;
 
 class UserService
@@ -13,16 +14,21 @@ class UserService
      * @var UserRepository
      */
     private $repo;
+    private $setting;
 
     public function __construct()
     {
         $this->repo = new UserRepository();
+        $this->setting = new SettingService();
     }
     public function register($request)
     {
+        $freeDays = $this->setting->name('free_days');
 
         $password = request('password');
         $request['password'] = bcrypt($password);
+        $request['expire_date'] = Carbon::now()->addDays($freeDays);
+        $request['start_date'] = Carbon::now();
         $this->repo->create($request);
         $oClient = OClient::where('password_client', 1)->first();
         $params = ['form_params' => [

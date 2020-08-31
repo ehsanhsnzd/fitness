@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','mobile'
+        'name', 'email', 'password','mobile','expire_date','start_date'
     ];
 
     /**
@@ -65,11 +65,10 @@ class User extends Authenticatable
             ->withPivot('active');
     }
 
-    public function plan($group)
+    public function plan()
     {
         return $this->belongsToMany(Plan::class,'user_plans','user_id','plan_id')
-            ->withPivot('expire_date','start_date')
-            ->wherePivot('plan_group','=',$group);
+            ->withPivot('expire_date','start_date');
     }
 
     public function findForPassport($username)

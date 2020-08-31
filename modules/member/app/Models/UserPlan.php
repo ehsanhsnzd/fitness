@@ -15,11 +15,11 @@ class UserPlan extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'expire_date', 'start_date', 'plan_id','plan_group','user_id'
+        'expire_date', 'start_date', 'plan_id','user_id'
     ];
 
 
-    protected $primaryKey = ['plan_group','user_id'];
+    protected $primaryKey = ['user_id'];
     public $incrementing = false;
 
 

@@ -28,7 +28,7 @@ class GetCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user('users-api')->can('getCategory',Category::find($this->id));
+        return $this->user('users-api')->can('getCategory',$this->repo->find($this->id));
     }
 
     /**
