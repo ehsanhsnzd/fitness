@@ -73,4 +73,16 @@ class UserController extends BaseController
             return $this->handleException($request,$exception);
         }
     }
+
+        public function check(Request $request)
+    {
+        try{
+            return $this->setMetaData($this->service->check($request->all()))
+                ->successResponse();
+        } catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
+    }
+
+
 }

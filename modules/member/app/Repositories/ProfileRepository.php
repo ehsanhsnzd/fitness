@@ -6,26 +6,26 @@ namespace Member\app\Repositories;
 
 use Core\app\repositories\Repository;
 use Illuminate\Database\Eloquent\Collection;
-use Member\app\Models\User;
+use Member\app\Models\Profile;
 
-class UserRepository implements Repository
+class ProfileRepository implements Repository
 {
+
     /**
-     * @var User
+     * @var Profile
      */
     private $model;
 
     public function __construct()
     {
-        $this->model = new User();
+        $this->model = new Profile();
     }
-
     public function find(int $id)
     {
-        $this->model->find($id);
+        // TODO: Implement find() method.
     }
 
-    public function fetch(string $id, array $relations):Collection
+    public function fetch(string $id, array $relations): Collection
     {
         // TODO: Implement fetch() method.
     }
@@ -57,6 +57,6 @@ class UserRepository implements Repository
 
     public function where(array $params)
     {
-        return $this->model->where($params);
+        // TODO: Implement where() method.
     }
 }

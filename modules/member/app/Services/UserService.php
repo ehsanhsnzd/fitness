@@ -6,6 +6,7 @@ use Core\app\Services\SettingService;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Client as oClient;
+use Member\app\Models\User;
 use Member\app\Repositories\UserRepository;
 
 class UserService
@@ -29,7 +30,7 @@ class UserService
         $request['password'] = bcrypt($password);
         $request['expire_date'] = Carbon::now()->addDays($freeDays);
         $request['start_date'] = Carbon::now();
-        $this->repo->create($request);
+        $user = $this->repo->create($request);
         $oClient = OClient::where('password_client', 1)->first();
         $params = ['form_params' => [
         'grant_type' => 'password',
@@ -39,7 +40,11 @@ class UserService
         'password' => $password,
         'scope' => '*',
         ]];
-        return $this->getTokenAndRefreshToken($params);
+
+        return [
+            'auth' =>   $this->getTokenAndRefreshToken($params),
+            'profile' =>   $user->profile()->create()
+        ];
     }
 
     public function refresh($request)
@@ -58,8 +63,8 @@ class UserService
 
         public function login($request)
     {
-
-        if (Auth::guard('users')->attempt(['mobile' => request('mobile'), 'password' => request('password')])) {
+        $auth =Auth::guard('users')->attempt(['mobile' => request('mobile'), 'password' => request('password')]);
+        if ($auth) {
             $oClient = oClient::where('password_client', 1)->first();
         }
 
@@ -71,7 +76,10 @@ class UserService
             'password' => $request->password,
             'scope' => '*',
         ]];
-        return $this->getTokenAndRefreshToken($params);
+        return [
+            'auth' =>   $this->getTokenAndRefreshToken($params),
+            'profile' => $this->repo->where(['mobile'=>$request->mobile])->first()->profile()->get()
+        ];
 
     }
 
@@ -85,6 +93,18 @@ class UserService
             return [$request->user()->token()->revoke()];
 
         return [];
+    }
+
+    /**
+     * registered before
+     * @param $request
+     * @return array
+     */
+    public function check($request)
+    {
+        return [$this->repo->where(['mobile'=>$request['mobile']])
+            ->get()
+            ->isNotEmpty()];
     }
 
     /**

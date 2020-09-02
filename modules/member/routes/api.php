@@ -20,13 +20,19 @@ Route::group(['prefix'=>'member/'],function(){
         Route::post('login', 'UserController@login');
         Route::post('refresh', 'UserController@refresh');
         Route::post('logout', 'UserController@logout');
+        Route::post('check', 'UserController@check');
         Route::get('', 'UserController@login')->name('login');
+
     });
 
 
 
 
     Route::group(['middleware'=>'auth:users-api','namespace'=>'Member\app\Http\Controllers'],function (){
+
+        Route::group(['prefix'=>'profile/'],function () {
+            Route::post('', 'ProfileController@update');
+        });
 
         Route::group(['prefix'=>'category/'],function () {
             Route::get('{id}', 'CategoryController@get');
