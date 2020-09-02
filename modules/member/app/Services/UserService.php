@@ -103,8 +103,7 @@ class UserService
     public function check($request)
     {
         return [$this->repo->where(['mobile'=>$request['mobile']])
-            ->get()
-            ->isNotEmpty()];
+            ->get()->isNotEmpty()];
     }
 
     /**
