@@ -5,7 +5,9 @@ deploy_develop:
     - ssh  fitness@79.137.127.154 "cd /home/fitness/websites/fitness &&
         git checkout develop -f &&
         git fetch &&
-        git checkout $CI_COMMIT_SHA "
+        git checkout $CI_COMMIT_SHA &&
+        composer install
+        "
 
   only:
     - develop
