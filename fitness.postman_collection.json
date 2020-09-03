@@ -9,7 +9,7 @@
 			"name": "member",
 			"item": [
 				{
-					"name": "plan",
+					"name": "MemberShip",
 					"item": [
 						{
 							"name": "Register",
@@ -259,6 +259,40 @@
 										"member",
 										"category",
 										"43"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "all root",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiM2VmZDk3ODZkMmQxYWM3ZDI0MzYyYWIxMDYyYjZmNTU5YTIxZTE3ZGY2ZDBiNTRlYWRiZTk5MDdhNzgwYWQxNzUxZjdmMWYzNmM2OGUxNTMiLCJpYXQiOjE1OTkxMjE3OTUsIm5iZiI6MTU5OTEyMTc5NSwiZXhwIjoxNTk5MjA4MTk1LCJzdWIiOiIxMiIsInNjb3BlcyI6WyIqIl19.PLU51Y3chCRXczNmIcMfY8ku8ZyqHaMt4QyxkR6aJCKphS6-g31XzE_nPU9p709iy1VypSbykmRgYn4aA_l_nb-d2ZSqnK4WOuuBLTeWIXLslvbJkaZZpGUK9mDQ2JYYDV6wOCenshMuVOTe9Lxlq-VGR6eX1JCHwelvPVAQuMMnj-1cbOd4SqGlVzO2YL3HpobmFCmwxbeWC1CFyyK7wmPFEvrFG23ph0CNY461eI3i_0-5qFV3gUu0OV2JigepGUGm6iczZP_bPCnh0ExYH_teHpoUj2RF729M0TuIUnY_DQC02YIQkr5NFpjdC4Aqx95A4YM7pAhJturMa7RklWbcEwNdfldGual_34324dVzFVyXLXHIA1VcE8h9-5OxikETxfrcpCLdtWJK9qBQp_lCI6jyqO_QeCPlJw9t0f4mPdtwp4ILbQ7AY9AXLJFXUYgglVig8wRIJ79bZEZ7r9Nw0MRf1a5F8BmaAKUBVH4tIeA4O2oVITLRBeQ55zu1eKmtn3tSPGoI0cmYppOcSwsRiBxb5mIhgj-0DmSzS2S8tFKMtQp9lJgZXkctoBXQRm1GyFCOSaz-yzrkbHG6Eu7J4CtGuM5A9YyRvq3uy-XrFFj006ApWuXec_1IS1X9rJMuhl1CFx05B8cgUUvyIWzkQpwqhE0jRTmeZcyoA8I",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{localhost}}/member/category",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"member",
+										"category"
 									]
 								}
 							},
@@ -971,7 +1005,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiZjY3MjNlMDY1MzYyZTExN2UyZTIwN2UxYmZiNzhjODhmNTE2ODBiY2Y1NDdkY2RlYjk3OTY1MDEyMDdhYzBjNGQzNTBlYzZkZTkxMWY4MzYiLCJpYXQiOjE1OTgyNTkwMTEsIm5iZiI6MTU5ODI1OTAxMSwiZXhwIjoxNTk4MzQ1NDExLCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.CKFvbmpLKPMywEWUaxJ2WwamAxhnHdl8pgtFpSTwUHGGo-o0GZyD2rFlCkXVWUAsiNRMfXN0EGgxVK9y7wKqxb2jOXr7DGAE6rhfvkWF3XGmPJFLGlWH3iHggp8qrkELDYetu_0jGeuW6N5WwrdWmYFdaSNMdy__v0UgYegLaSEDjZb__n3kG_ASKTtPywkSKo5X8q0lYgKGIpTxunZv76U7XxEYjG_ZxG4owDrw1Uz6Y6rE6PVf1_g_kUifql6Lx6fQMtrbELtHjkLkKBv5auUxwUeVE9e3kvnrIPwRYXHku4PerFJGUgLeB8uST9QlM_2thpTsKPUEUYDUSz1LsVk9wqIFFCF0k1KNHsg9kNZWavvIBJ2r-QZdrQe5LiGQCntu6VwaMok1H8fvsgu4kBd-GxnKXRwKBYqCtFEfoyzi6U0DX0CALp852Pl5s8oSjlUjNuqd5PIr80_YekZF5PF8g0lDT85XUhR5RZqEF4OzPEy0X-3qc2XAq649uQ-mBwqiGNsaGayDDLH44-A-m3sO4csYCuBOQkYURCEwZgl4lPxW5_TjAwP20jMqeg5PHjx-oORh1LS6-IUuolD5xxMoSNCgJv-hRXA7bfi68HgCD0NvGziWIOWxHsV-utKZu3h6X5agfjCTIEISmfkj3S9EhRvhdseFkloYP0lpctc",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYjA4NDgzMDhlY2U4ZWY5Y2JmMGQ5ZTM4NDhmN2JmNzE5NzE2ZDM2Mjc3YWYwYzAxNGUxNTcwNzUxNDA2NjY3MWU4NGI5MDhhNzViYWM0MjMiLCJpYXQiOjE1OTkxMTYxNjcsIm5iZiI6MTU5OTExNjE2NywiZXhwIjoxNTk5MjAyNTY3LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.XVJMPgyE-C6Uz6v6rCTTQWaDH7tcqDnuwXcb9wgmJOpQL9C8P8Df8x9Oz55j6wsHQtPplU81MMSCU1we_CWUGEvR6Y9SpxYXG3kY-F-l0BPatmEUwb4Md5bJ-FdlPuxEE1Al_mJYXJsFFUWbNKMhmU36iMxmnxc3VW64j5gfuSFVGHVLWtV_8-85r-bQWZ_ZqX6yUmXGK-XsLLI6ND22FatRPo1Y1dMMhgvHUNzKzedyGVSc66qLmgsa8SqlYscGDpVL_G6KW-EFhtwJbLDKEb6SODaXTbCp3o9wzXZJZ7DMVz-9CtLOEnBLAUJN_HNhgZppEKZOi95-FGtVinKow4WLhk5GCwGhBAnCnFgP3Kg8y_ZLembhsDc2a6aw0GtYJVvvsfyaUtOKS6UheV9DLygXd0EFWTc_9rvT_b96FLNN4GMtSqLS_Gjf5N_ZKkx3L1qeQqIq__aghoCwF3jdqbO13stfvCZfTDkTk5HC5VpkDbvu1l1F_ElyK3qeb6C4LzPbeKoZDnD3f3XlvYT8CelZrSEfU7nc6VT5GjhMLV5yrbwkShpF-utqDkwBXNEdX73XFy63UjCW7pFnYOsPMXucn19u73vIxun5zGYfPfFILcdzgH-vveFHN7EwmETheB53GXCd4bkr9JPsW05aaG3yl4bkxhL3z17LeIUEVv4",
 											"type": "string"
 										}
 									]
@@ -986,7 +1020,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{   \n    \"title\":\"some title\",\n    \"plan_id\":\"2\",\n    \"public\":0,\n    \"parent_id\":1\n}",
+									"raw": "{   \n    \"title\":\"some title\",\n    \"plan_id\":[1,2],\n    \"public\":0,\n    \"parent_id\":2,\n    \"photo\":\"photo.jpg get upload from upload post api\",\n    \"description\":[\"title1\",\"title2\",\"title3\"]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1029,7 +1063,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{   \n    \"id\":\"43\",\n    \"title\":\"some title\",\n    \"plan_id\":\"2\",\n    \"public\":0,\n    \"parent_id\":1\n}",
+									"raw": "{   \n    \"id\":\"43\",\n    \"plan_id\":[1,2],\n    \"public\":0,\n    \"parent_id\":2,\n    \"photo\":\"photo.jpg get upload from upload post api\",\n    \"description\":[\"title1\",\"title2\",\"title3\"]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1092,13 +1126,63 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "upload photo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYjA4NDgzMDhlY2U4ZWY5Y2JmMGQ5ZTM4NDhmN2JmNzE5NzE2ZDM2Mjc3YWYwYzAxNGUxNTcwNzUxNDA2NjY3MWU4NGI5MDhhNzViYWM0MjMiLCJpYXQiOjE1OTkxMTYxNjcsIm5iZiI6MTU5OTExNjE2NywiZXhwIjoxNTk5MjAyNTY3LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.XVJMPgyE-C6Uz6v6rCTTQWaDH7tcqDnuwXcb9wgmJOpQL9C8P8Df8x9Oz55j6wsHQtPplU81MMSCU1we_CWUGEvR6Y9SpxYXG3kY-F-l0BPatmEUwb4Md5bJ-FdlPuxEE1Al_mJYXJsFFUWbNKMhmU36iMxmnxc3VW64j5gfuSFVGHVLWtV_8-85r-bQWZ_ZqX6yUmXGK-XsLLI6ND22FatRPo1Y1dMMhgvHUNzKzedyGVSc66qLmgsa8SqlYscGDpVL_G6KW-EFhtwJbLDKEb6SODaXTbCp3o9wzXZJZ7DMVz-9CtLOEnBLAUJN_HNhgZppEKZOi95-FGtVinKow4WLhk5GCwGhBAnCnFgP3Kg8y_ZLembhsDc2a6aw0GtYJVvvsfyaUtOKS6UheV9DLygXd0EFWTc_9rvT_b96FLNN4GMtSqLS_Gjf5N_ZKkx3L1qeQqIq__aghoCwF3jdqbO13stfvCZfTDkTk5HC5VpkDbvu1l1F_ElyK3qeb6C4LzPbeKoZDnD3f3XlvYT8CelZrSEfU7nc6VT5GjhMLV5yrbwkShpF-utqDkwBXNEdX73XFy63UjCW7pFnYOsPMXucn19u73vIxun5zGYfPfFILcdzgH-vveFHN7EwmETheB53GXCd4bkr9JPsW05aaG3yl4bkxhL3z17LeIUEVv4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/home/ubuntu/Downloads/Screenshot_27 (1).jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/admin/category/upload",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										"upload"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "plan",
+					"name": "memberShip",
 					"item": [
 						{
 							"name": "get by id",
@@ -1158,7 +1242,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{   \n    \"id\":6,\n    \"name\":\"sss\",\n    \"name_fa\" :\"نام\",\n    \"description\":\"some desc\"\n}",
+									"raw": "{   \n    \"id\":6,\n    \"title\" :\"premium\",\n    \"description\" : \"some desc\",\n    \"expire_days\" : 30\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1221,7 +1305,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiOTg3ZTUzYWVhOWI4NmZhODM5ODhkZDAwN2I2M2VmYzc2ZTI0Yjk4YzM2OGQ4NDNmMDgxMTczZTU0ZmE2NzEyYTJhODc1MmEyMGUyMjNmYTciLCJpYXQiOjE1OTg4Nzg0NTIsIm5iZiI6MTU5ODg3ODQ1MiwiZXhwIjoxNTk4OTY0ODUyLCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.rEM97exlsahGNjVTckMB-AKGitv3629v24qqkJB8aDWRknFqAL7jlyaZwwEjxsUS7PAky3Av3c7YVUYFnRkVb-ylQgiHr3W-xZV5wbedEK9Ycikx8c1HILVLeOUb2Akyu6wz1FjAqKOKHb-DgA-6ayxf2eJfP6bkjHQGtjkJW5AhphnASEpgyaQus2PwiZoTGFy00mV7BkQROLcNCvpD1a7EnNTihmNTfX_s0ZpuXQ7GlxS6nxJeER5pQSj8JzmszTCjmZENIEgk8RdpuCzSKHYPXNoY7CgIdb0rr-94_Yti4bXf2Jr49kBqr1TBIlYAQF8fXP8zRWv0z5gm0cvAqoTpvZL0Ma7z90GlWJFAV07HCrKeIq0ogjSK-n8oUX9yWis91M0o4v2MCypFw-7d5_5b37AldQdUlGF4X6yG2Lbxg7VuQKdwGds_GujEPYoSdT4rqNhQt4bL5GxPFG0aXP-qwrr-WUnIeJh8f5PpdlgSKJZT6trmeZEWzGTUsSh5RnNg2R-TiSU_QfzXgHKTLQTamJ5OFF1rypNqoPbLpJ6lWC_BwFWm8hHd_Ec25omjxZs9xfvErx0WqQVewFwgIWOkWaR0rIIl568nv6BuQ3144eYnHTk75ihzUVfjH6naBt3S8yDykPAUGuCR-5BNRwxNr9x9ExYO18LdEJGgPdE",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYjA4NDgzMDhlY2U4ZWY5Y2JmMGQ5ZTM4NDhmN2JmNzE5NzE2ZDM2Mjc3YWYwYzAxNGUxNTcwNzUxNDA2NjY3MWU4NGI5MDhhNzViYWM0MjMiLCJpYXQiOjE1OTkxMTYxNjcsIm5iZiI6MTU5OTExNjE2NywiZXhwIjoxNTk5MjAyNTY3LCJzdWIiOiIxIiwic2NvcGVzIjpbIioiXX0.XVJMPgyE-C6Uz6v6rCTTQWaDH7tcqDnuwXcb9wgmJOpQL9C8P8Df8x9Oz55j6wsHQtPplU81MMSCU1we_CWUGEvR6Y9SpxYXG3kY-F-l0BPatmEUwb4Md5bJ-FdlPuxEE1Al_mJYXJsFFUWbNKMhmU36iMxmnxc3VW64j5gfuSFVGHVLWtV_8-85r-bQWZ_ZqX6yUmXGK-XsLLI6ND22FatRPo1Y1dMMhgvHUNzKzedyGVSc66qLmgsa8SqlYscGDpVL_G6KW-EFhtwJbLDKEb6SODaXTbCp3o9wzXZJZ7DMVz-9CtLOEnBLAUJN_HNhgZppEKZOi95-FGtVinKow4WLhk5GCwGhBAnCnFgP3Kg8y_ZLembhsDc2a6aw0GtYJVvvsfyaUtOKS6UheV9DLygXd0EFWTc_9rvT_b96FLNN4GMtSqLS_Gjf5N_ZKkx3L1qeQqIq__aghoCwF3jdqbO13stfvCZfTDkTk5HC5VpkDbvu1l1F_ElyK3qeb6C4LzPbeKoZDnD3f3XlvYT8CelZrSEfU7nc6VT5GjhMLV5yrbwkShpF-utqDkwBXNEdX73XFy63UjCW7pFnYOsPMXucn19u73vIxun5zGYfPfFILcdzgH-vveFHN7EwmETheB53GXCd4bkr9JPsW05aaG3yl4bkxhL3z17LeIUEVv4",
 											"type": "string"
 										}
 									]
@@ -1236,7 +1320,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{   \n    \"title\" :\"premium\",\n    \"description\" : \"some desc\"\n}",
+									"raw": "{   \n    \"title\" :\"premium\",\n    \"description\" : \"some desc\",\n    \"expire_days\" : 30\n}",
 									"options": {
 										"raw": {
 											"language": "json"
