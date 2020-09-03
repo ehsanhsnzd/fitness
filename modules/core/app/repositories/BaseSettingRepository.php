@@ -31,7 +31,7 @@ class BaseSettingRepository implements Repository
            ->get();
     }
 
-    public function model(int $id)
+    public function model()
     {
         // TODO: Implement model() method.
     }

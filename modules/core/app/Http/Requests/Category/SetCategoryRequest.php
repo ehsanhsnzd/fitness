@@ -2,9 +2,9 @@
 
 namespace Core\app\Http\Requests\Category;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Core\app\Http\Requests\BaseRequest;
 
-class SetCategoryRequest extends FormRequest
+class SetCategoryRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,29 @@ class SetCategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'plan_id'  => 'required|string|exists:plans,id',
-            'public' => 'bool'
+            'plan_id'  => 'required|array',
+            'public' => 'bool',
+            'parent_id' =>'nullable|numeric|exists:categories,id',
+            'photo' => 'string',
+            'description' => 'array'
         ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'title' => 'رو نوشت',
+            'plan_id'  => 'پلن',
+            'public' => 'عمومی',
+            'parent_id' =>'پرنت',
+            'description' => 'متن'
+        ];
+
     }
 
 
     public function getData()
     {
-        return $this->only('title','plan_id','parent_id','public');
+        return $this->only('title','plan_id','parent_id','public','photo','description');
     }
 }

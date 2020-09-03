@@ -7,6 +7,7 @@ namespace Core\app\Exceptions;
 use Core\app\Traits\ApiResponse;
 use Doctrine\Instantiator\Exception\UnexpectedValueException;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Container\EntryNotFoundException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -17,7 +18,6 @@ use Symfony\Component\CssSelector\Exception\InternalErrorException;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 
 trait ExceptionHandler
 {
@@ -25,7 +25,6 @@ trait ExceptionHandler
     private function handleApiException($request, \Throwable $e)
     {
 
-        $e = $this->prepareException($e);
         return $this->handleException($request,$e);
 
     }
@@ -33,6 +32,7 @@ trait ExceptionHandler
 
     public function handleException($request,  $e,$httpCode=null,$status = 'Failed')
     {
+
 
         if($e instanceof NotFoundHttpException ) {
             return $this->handle($e,$e->getMessage(),$this->getHttpCode(404,$httpCode),$e->getCode(),$status);
@@ -62,19 +62,20 @@ trait ExceptionHandler
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(401,$httpCode),$e->getCode(),$status);
 
         }elseif($e instanceof QueryException) {
-            return $this->handle($e, $e->getMessage(), $this->getHttpCode(409, $httpCode), $e->getCode(), $status);
+            return $this->handle($e, $e->getMessage(), $this->getHttpCode(409, $httpCode), 409, $status);
         } elseif($e instanceof UnexpectedValueException) {
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(400,$httpCode),$e->getCode(),$status);
 
         }elseif ($e instanceof ValidationException) {
             $e = $this->convertValidationExceptionToResponse($e, $request);
             return $this->setMetaData([], ["validation" => $e->getOriginalContent()])->badRequestResponse();
+        }elseif ($e instanceof AuthenticationException) {
+            return $this->handle($e,$e->getMessage() ,$this->getHttpCode(400,$httpCode),$e->getCode(),$status);
         }else {
 //            return $e;
             return $this->customResponse($e,$status,500,$e->getCode());
             return $this->failedResponse();
         }
-
     }
 
 

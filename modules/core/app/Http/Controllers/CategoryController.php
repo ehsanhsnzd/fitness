@@ -6,6 +6,7 @@ use Core\app\Http\Requests\Category\DeleteCategoryRequest;
 use Core\app\Http\Requests\Category\EditCategoryRequest;
 use Core\app\Http\Requests\Category\GetCategoryRequest;
 use Core\app\Http\Requests\Category\SetCategoryRequest;
+use Core\app\Http\Requests\Category\UploadCategoryRequest;
 use Core\app\Services\CategoryService;
 
 class CategoryController extends BaseController
@@ -50,6 +51,16 @@ class CategoryController extends BaseController
         try{
             $this->service->delete($request->all());
             return $this->setMetaData([])->successResponse();
+        }catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
+    }
+
+
+    public function upload(UploadCategoryRequest $request)
+    {
+        try{
+            return $this->setMetaData([$request->getData()['photo']])->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }

@@ -6,7 +6,6 @@ namespace Core\app\Services;
 use Core\app\repositories\CategoryRepository;
 use Core\app\repositories\PermissionRepository;
 use Core\app\repositories\PlanRepository;
-use Core\app\repositories\RoleRepository;
 
 class CategoryService
 {
@@ -21,7 +20,14 @@ class CategoryService
         $this->permissionRepo = new PermissionRepository();
     }
 
+    public function all()
+    {
+        $categories = $this->repo->fetch(null,['nodes','items'],'parent_id');
+        $categories = $this->extractDescription($categories);
 
+        return
+            $categories->toArray();
+    }
 
     /** get category by id
      * @param $request
@@ -30,6 +36,7 @@ class CategoryService
     public function get($request)
     {
         $categories = $this->repo->fetch($request['id'],['nodes','items']);
+        $categories = $this->extractDescription($categories);
 
         return
             $categories->toArray();
@@ -41,14 +48,13 @@ class CategoryService
      */
     public function set($request)
     {
-        $plan = $this->planRepo->find($request['plan_id']);
+
+        $request['description'] = json_encode($request['description']);
+
         $category = $this->repo->create($request);
-        $permission = $this->permissionRepo->create([
-            'name' => 'category.'.$category->id,
-            'guard_name' => 'users'
-        ]);
-        $role = $plan->role()->first();
-        $role->givePermissionTo($permission);
+
+        $this->syncPermission($category,$request);
+
 
         return [
             $category
@@ -58,6 +64,15 @@ class CategoryService
 
     public function edit($request)
     {
+        $this->permissionRepo->where(['name' => 'category.'.$request['id']])->first()->delete();
+
+        $request['description'] = json_encode($request['description']);
+
+        $category = $this->repo->find($request['id']);
+        $category->update($request);
+
+        $this->syncPermission($category,$request);
+
         return [
             $this->repo->update($request['id'],$request)
         ];
@@ -65,6 +80,31 @@ class CategoryService
 
     public function delete($request)
     {
+        $this->permissionRepo->where(['name' => 'category.'.$request['id']])->first()->delete();
         $this->repo->delete($request['id']);
+    }
+
+    public function extractDescription($categories)
+    {
+        return collect($categories)->map(function ($cat){
+            $cat->description = json_decode($cat->description);
+            return $cat;
+        });
+    }
+
+    public function syncPermission($category,$request)
+    {
+        $plan = $this->planRepo->model()->whereIn('id',$request['plan_id'])
+            ->get();
+        $permission = $this->permissionRepo->create([
+            'name' => 'category.'.$category->id,
+            'guard_name' => 'users'
+        ]);
+        $category->plan()->sync($request['plan_id']);
+
+        $plan->map(function($plan) use ($permission){
+            $role = $plan->role()->first();
+            $role->givePermissionTo($permission);
+        });
     }
 }

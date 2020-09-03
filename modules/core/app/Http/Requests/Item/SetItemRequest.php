@@ -3,10 +3,11 @@
 namespace Core\app\Http\Requests\Item;
 
 use Carbon\Carbon;
+use Core\app\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
 
-class SetItemRequest extends FormRequest
+class SetItemRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -43,18 +44,4 @@ class SetItemRequest extends FormRequest
         return $request;
     }
 
-
-    public function handleFile($name,$path,$params)
-    {
-        if($this->hasFile($name)) {
-            $file = $this->file($name);
-            $fileName = $file->getClientOriginalName();
-            $fileName = Carbon::now()->timestamp . $fileName;
-            Storage::disk('local')
-                ->putFileAs($path, $file,$fileName);
-
-            $params[$name] = $fileName;
-        }
-        return $params;
-    }
 }

@@ -76,7 +76,7 @@ class BaseRepository implements Repository
      * @param int $id
      * @return mixed|null
      */
-    public function model(int $id)
+    public function model()
     {
         return $this->model;
     }

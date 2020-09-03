@@ -308,6 +308,42 @@
 							"response": []
 						},
 						{
+							"name": "set profile",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \n    \"mobile\":\"09125126599\",\n    \"password\":\"123\",\n    \"verify_password\":\"123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/member/register",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"member",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Login",
 							"request": {
 								"auth": {
@@ -410,6 +446,42 @@
 									"path": [
 										"member",
 										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "check",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \n    \"mobile\":\"09125126499\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}/member/check",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"member",
+										"check"
 									]
 								}
 							},

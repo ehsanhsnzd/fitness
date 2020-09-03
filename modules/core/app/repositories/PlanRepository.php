@@ -30,9 +30,9 @@ class PlanRepository implements Repository
             ->get();
     }
 
-    public function model(int $id)
+    public function model()
     {
-        // TODO: Implement model() method.
+        return $this->model;
     }
 
     public function all(): Collection

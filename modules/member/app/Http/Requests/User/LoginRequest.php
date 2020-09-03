@@ -6,20 +6,19 @@ namespace Member\app\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
 
     public function rules()
     {
         return [
-            'mobile' => 'required|string|max:11|unique:users,mobile',
+            'mobile' => 'required|string|max:11|exists:users,mobile',
             'password' => 'required',
-            'verify_password' => 'required|same:password'
         ];
     }
 
     public function getData()
     {
-        return $this->only('mobile','password','verify_password');
+        return $this->only('mobile','password');
     }
 }

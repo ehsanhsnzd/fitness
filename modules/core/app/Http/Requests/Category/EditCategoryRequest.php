@@ -24,17 +24,19 @@ class EditCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'    =>  'required|numeric',
-            'title' => 'required|string',
-            'plan'  => 'required|string|exists:roles,name',
-            'parent_id' => 'numeric',
-            'public' => 'bool'
+            'id'    => 'required|numeric|exists:categories,id',
+            'title' => 'nullable|string',
+            'plan_id'  => 'nullable|array',
+            'public' => 'nullable|bool',
+            'parent_id' =>'nullable|numeric|exists:categories,id',
+            'photo' => 'nullable|string',
+            'description' => 'nullable|array'
         ];
     }
 
 
     public function getData()
     {
-        return $this->only('id','title','plan','parent_id','public');
+        return $this->only('id','title','plan_id','parent_id','public','photo','description');
     }
 }

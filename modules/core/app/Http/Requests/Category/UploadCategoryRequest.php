@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\app\Http\Requests\Role;
+namespace Core\app\Http\Requests\Category;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Core\app\Http\Requests\BaseRequest;
 
-class SetRoleRequest extends FormRequest
+class UploadCategoryRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,15 @@ class SetRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string',
-            'description' => 'string',
-            'expire_days' => 'required|numeric'
+            'photo' => 'required|image|max:1024',
         ];
     }
 
+
     public function getData()
     {
-        return $this->only('title','description','expire_days');
+        $request = $this->only('photo');
+        $request = $this->handleFile('photo','category',$request);
+        return $request;
     }
 }

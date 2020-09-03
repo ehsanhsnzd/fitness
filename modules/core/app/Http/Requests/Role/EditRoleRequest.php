@@ -24,16 +24,16 @@ class EditRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric|exists:roles,id',
-            'name' => 'required|string',
-            'name_fa' => 'required|string',
-            'description' => 'string'
+            'id' => 'required|numeric|exists:plans,id',
+            'title' => 'nullable|required|string',
+            'description' => 'nullable|string',
+            'expire_days' => 'nullable|required|numeric'
         ];
     }
 
     public function getData()
     {
-        return $this->only('id','name','name_fa','description');
+        return $this->only('id','title','description','expire_days');
     }
 
 }
