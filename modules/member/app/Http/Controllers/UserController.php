@@ -3,6 +3,7 @@ namespace Member\app\Http\Controllers;
 
 use Core\app\Exceptions\ExceptionHandler;
 use Core\app\Http\Controllers\BaseController;
+use Member\app\Http\Requests\User\LoginRequest;
 use Member\app\Http\Requests\User\RefreshRequest;
 use Member\app\Http\Requests\User\RegisterRequest;
 use Member\app\Services\UserService;
@@ -33,10 +34,10 @@ class UserController extends BaseController
     }
 
     /**
-     * @param Request $request
+     * @param LoginRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         try{
             return $this->setMetaData($this->service->login($request))

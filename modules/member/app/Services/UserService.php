@@ -43,7 +43,7 @@ class UserService
 
         return [
             'auth' =>   $this->getTokenAndRefreshToken($params),
-            'profile' =>   $user->profile()->create()
+            'profile' =>   $user->profile()->create(['name'=>'','last_name'=>''])
         ];
     }
 

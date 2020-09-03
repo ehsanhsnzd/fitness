@@ -24,7 +24,7 @@ class RoleRepository implements Repository
         // TODO: Implement fetch() method.
     }
 
-    public function model(int $id)
+    public function model()
     {
         // TODO: Implement model() method.
     }

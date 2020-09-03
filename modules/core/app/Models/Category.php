@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 class Category extends Model
 {
     use HasRoles;
-    protected $fillable=['parent_id','title','plan_id','public'];
+    protected $fillable=['parent_id','title','public','photo','description'];
 
     /** recursive category children
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -23,7 +23,7 @@ class Category extends Model
 
     public function plan()
     {
-        return $this->belongsTo(Plan::class,'plan_id','id');
+        return $this->belongsToMany(CategoryPlan::class,'category_plan','category_id','plan_id');
     }
 
     public function items()

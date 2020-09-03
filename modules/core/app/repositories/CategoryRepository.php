@@ -60,22 +60,22 @@ class CategoryRepository implements Repository
     }
 
     /**
-     * @param int $id
+     * @param string|null $id
      * @param array $relations
+     * @param null $field
      * @return mixed
      */
-    public function fetch(string $id, array $relations):Collection
+    public function fetch(?string $id, array $relations, $field = null):Collection
     {
-        return $this->model->where('id',$id)
+        return $this->model->where($field ?? 'id',$id)
             ->with($relations)
             ->get();
     }
 
     /**
-     * @param int $id
      * @return Category
      */
-    public function model(int $id)
+    public function model()
     {
         return $this->model;
     }

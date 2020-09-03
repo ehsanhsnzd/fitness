@@ -44,8 +44,10 @@ Route::group(['prefix'=>'admin/'],function (){
         Route::group(['prefix'=>'category/'],function () {
             Route::post('', 'CategoryController@set');
             Route::put('', 'CategoryController@edit');
+            Route::post('upload', 'CategoryController@upload');
             Route::delete('{id}', 'CategoryController@delete');
             Route::get('{id}', 'CategoryController@get');
+
         });
 
         Route::group(['prefix'=>'item/'],function () {

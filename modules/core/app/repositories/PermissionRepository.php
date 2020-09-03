@@ -4,6 +4,7 @@
 namespace Core\app\repositories;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Spatie\Permission\Models\Permission;
 
@@ -30,7 +31,7 @@ class PermissionRepository implements Repository
         // TODO: Implement fetch() method.
     }
 
-    public function model(int $id)
+    public function model()
     {
         // TODO: Implement model() method.
     }
@@ -55,8 +56,8 @@ class PermissionRepository implements Repository
         // TODO: Implement delete() method.
     }
 
-    public function where(array $params): Collection
+    public function where(array $params):Builder
     {
-        // TODO: Implement where() method.
+        return $this->model->where($params);
     }
 }

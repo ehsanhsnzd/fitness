@@ -3,10 +3,11 @@
 namespace Core\app\Http\Requests\Item;
 
 use Carbon\Carbon;
+use Core\app\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
 
-class EditItemRequest extends FormRequest
+class EditItemRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
