@@ -5,9 +5,10 @@ namespace Member\app\Http\Requests\Item;
 use Core\app\repositories\CategoryRepository;
 use Core\app\repositories\ItemRepository;
 use Illuminate\Foundation\Http\FormRequest;
+use Member\app\Http\Requests\BaseRequest;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 
-class GetItemRequest extends FormRequest
+class GetItemRequest extends BaseRequest
 {
     /**
      * @var CategoryRepository

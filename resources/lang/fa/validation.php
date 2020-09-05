@@ -27,7 +27,7 @@ return array(
         "string"  => ":attribute باید بین :min و :max کاراکتر باشد.",
         "array"   => ":attribute باید بین :min و :max آیتم باشد.",
     ),
-    "boolean"          => "The :attribute field must be true or false",
+    "boolean"          => "The :attribute باید 0 یا ۱ باشد",
     "confirmed"        => ":attribute با تاییدیه مطابقت ندارد.",
     "date"             => ":attribute یک تاریخ معتبر نیست.",
     "date_format"      => ":attribute با الگوی :format مطاقبت ندارد.",

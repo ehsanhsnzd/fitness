@@ -5,8 +5,9 @@ namespace Member\app\Http\Requests\User;
 
 
 use Illuminate\Foundation\Http\FormRequest;
+use Member\app\Http\Requests\BaseRequest;
 
-class RefreshRequest extends FormRequest
+class RefreshRequest extends BaseRequest
 {
 
     public function rules()

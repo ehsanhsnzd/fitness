@@ -2,9 +2,10 @@
 
 namespace Core\app\Http\Requests\Role;
 
+use Core\app\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class GetRoleRequest extends FormRequest
+class GetRoleRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

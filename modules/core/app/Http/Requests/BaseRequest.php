@@ -14,15 +14,16 @@ class BaseRequest extends FormRequest
     public function attributes()
     {
         return [
+            'id' => 'آی دی',
             'title' => 'رو نوشت',
             'plan_id'  => 'پلن',
             'public' => 'عمومی',
             'photo' => 'عکس',
-            'description' => 'متن'
-
-
-
-
+            'description' => 'متن',
+            'expire_days' => 'روزهای انقضا',
+            'default' => 'پیشفرض',
+            'attached' => 'فایل',
+            'category_id'   => 'آی دی دسته بندی'
         ];
 
     }

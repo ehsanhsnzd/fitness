@@ -11,6 +11,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Container\EntryNotFoundException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
 use Laravel\Passport\Exceptions\InvalidAuthTokenException;
@@ -59,7 +60,7 @@ trait ExceptionHandler
             return $this->handle($e,$e->getMessage() ,$this->getHttpCode(401,$httpCode),$e->getCode(),$status);
 
         }elseif($e instanceof UnauthorizedException) {
-            return $this->handle($e,$e->getMessage() ,$this->getHttpCode(401,$httpCode),$e->getCode(),$status);
+            return $this->handle($e,$e->getMessage() ,$this->getHttpCode(403,$httpCode),$e->getCode(),$status);
 
         }elseif($e instanceof QueryException) {
             return $this->handle($e, $e->getMessage(), $this->getHttpCode(409, $httpCode), 409, $status);
@@ -92,8 +93,17 @@ trait ExceptionHandler
      */
     private function handle(\Exception $e , $message , $httpCode , $statusCode , $status)
     {
+//        $message = Lang::get('messages.'.$this->getMessage($e));
         return $this->customResponse($message,$status,$httpCode,$statusCode);
     }
+
+    function getMessage($classname)
+    {
+        $classname = get_class($classname);
+        if ($pos = strrpos($classname, '\\')) $classname= substr($classname, $pos + 1);
+        return $classname;
+    }
+
 
     private function getHttpCode($defaultHttpCode,$currentHttpCode)
     {

@@ -2,9 +2,10 @@
 
 namespace Core\app\Http\Requests\Role;
 
+use Core\app\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditRoleRequest extends FormRequest
+class EditRoleRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,13 +28,14 @@ class EditRoleRequest extends FormRequest
             'id' => 'required|numeric|exists:plans,id',
             'title' => 'nullable|required|string',
             'description' => 'nullable|string',
-            'expire_days' => 'nullable|required|numeric'
+            'expire_days' => 'nullable|required|numeric',
+            'default' => 'bool'
         ];
     }
 
     public function getData()
     {
-        return $this->only('id','title','description','expire_days');
+        return $this->only('id','title','description','expire_days','default');
     }
 
 }

@@ -33,18 +33,6 @@ class SetCategoryRequest extends BaseRequest
         ];
     }
 
-    public function attributes()
-    {
-        return [
-            'title' => 'رو نوشت',
-            'plan_id'  => 'پلن',
-            'public' => 'عمومی',
-            'parent_id' =>'پرنت',
-            'description' => 'متن'
-        ];
-
-    }
-
 
     public function getData()
     {
