@@ -4,7 +4,6 @@
 namespace Member\app\Services;
 
 
-
 use Carbon\Carbon;
 use Core\app\repositories\PlanRepository;
 use Core\app\repositories\RoleRepository;
@@ -21,7 +20,7 @@ class RoleService
     private $user;
     private $setting;
 
-    public function __construct($repo= null)
+    public function __construct($repo = null)
     {
         $this->repo = $repo ?? new PlanRepository();
         $this->setting = new SettingService();
@@ -85,16 +84,31 @@ class RoleService
 //        /** assign roles */
 //        $selected->syncWithoutDetaching($plan->role_id);
 
-        $plan = $this->repo->find($request['plan_id']);
-        $freeDays = $this->setting->name('free_days');
-        $user = $this->user;
-        $user->expire_date = Carbon::now()->addDays($freeDays);
-        $user->start_date = Carbon::now();
-        $user->save();
+//        $freeDays = $this->setting->name('free_days');
+//        $user->expire_date = Carbon::now()->addDays($freeDays);
 
         return [
-            $user->assignRole($plan->role()->first()->id)
+            $this->assignPlan($this->user,$request['plan_id'])
         ];
+
+    }
+
+    public function assignPlan($user, $planId)
+    {
+        $plan = $this->repo->find($planId);
+        $user->start_date = Carbon::now();
+
+        if ($plan->expire_days > 0)
+            $user->expire_date = Carbon::now()->addDays($plan->expire_days);
+
+        if($user->plan()->first())
+            $user->removeRole($user->plan()->first()->role()->first()->id);
+
+        $user->plan_id = $planId;
+        $user->save();
+        $user->assignRole($plan->role()->first()->id);
+        return $plan;
+
     }
 
 }

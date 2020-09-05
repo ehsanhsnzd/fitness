@@ -20,7 +20,7 @@ class CategoryPolicy
     {
         if(isset($category) && $category->public)
             return true;
-        if ($user->expire_date<= Carbon::now() ||
+        if (($user->expire_date != null || $user->expire_date<= Carbon::now()) ||
             !$user->can('category.'.$category->id))
             throw new AccessDeniedException('dont have access');
 

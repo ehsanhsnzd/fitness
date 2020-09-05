@@ -6,7 +6,6 @@ use Core\app\Services\SettingService;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Client as oClient;
-use Member\app\Models\User;
 use Member\app\Repositories\UserRepository;
 
 class UserService
@@ -16,21 +15,28 @@ class UserService
      */
     private $repo;
     private $setting;
+    private $role;
 
     public function __construct()
     {
         $this->repo = new UserRepository();
         $this->setting = new SettingService();
+        $this->role= new RoleService();
     }
     public function register($request)
     {
-        $freeDays = $this->setting->name('free_days');
 
+        $defaultPlan = $this->setting->name('default_plan');
         $password = request('password');
         $request['password'] = bcrypt($password);
-        $request['expire_date'] = Carbon::now()->addDays($freeDays);
         $request['start_date'] = Carbon::now();
         $user = $this->repo->create($request);
+
+
+        if($defaultPlan)
+            $this->role->assignPlan($user, $defaultPlan);
+
+
         $oClient = OClient::where('password_client', 1)->first();
         $params = ['form_params' => [
         'grant_type' => 'password',
@@ -40,6 +46,8 @@ class UserService
         'password' => $password,
         'scope' => '*',
         ]];
+
+
 
         return [
             'auth' =>   $this->getTokenAndRefreshToken($params),
