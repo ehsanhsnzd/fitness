@@ -3,6 +3,7 @@ namespace Member\app\Http\Controllers;
 
 use Core\app\Exceptions\ExceptionHandler;
 use Core\app\Http\Controllers\BaseController;
+use Illuminate\Http\JsonResponse;
 use Member\app\Http\Requests\User\LoginRequest;
 use Member\app\Http\Requests\User\RefreshRequest;
 use Member\app\Http\Requests\User\RegisterRequest;
@@ -21,7 +22,7 @@ class UserController extends BaseController
 
     /**
      * @param RegisterRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function register(RegisterRequest $request)
     {
@@ -35,7 +36,7 @@ class UserController extends BaseController
 
     /**
      * @param LoginRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function login(LoginRequest $request)
     {
@@ -49,7 +50,7 @@ class UserController extends BaseController
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function logout(Request $request)
     {
@@ -62,8 +63,8 @@ class UserController extends BaseController
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param RefreshRequest $request
+     * @return JsonResponse
      */
     public function refresh(RefreshRequest $request)
     {

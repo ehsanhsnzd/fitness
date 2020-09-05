@@ -2,12 +2,11 @@
 
 namespace Member\app\Http\Requests\Category;
 
-use Core\app\Models\Category;
 use Core\app\repositories\CategoryRepository;
 use Illuminate\Foundation\Http\FormRequest;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Member\app\Http\Requests\BaseRequest;
 
-class GetCategoryRequest extends FormRequest
+class GetCategoryRequest extends BaseRequest
 {
     /**
      * @var CategoryRepository

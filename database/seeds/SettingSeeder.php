@@ -27,6 +27,13 @@ class SettingSeeder extends Seeder
             'value' => '2'
         ]);
 
+        Setting::firstOrCreate([
+            'base_setting_id' => $plan->id,
+            'title' => 'default plan',
+            'slug' => 'default_plan',
+            'value' => '1'
+        ]);
+
 
     }
 }

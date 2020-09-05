@@ -2,9 +2,10 @@
 
 namespace Core\app\Http\Requests\Item;
 
+use Core\app\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteItemRequest extends FormRequest
+class DeleteItemRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

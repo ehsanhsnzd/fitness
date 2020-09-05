@@ -67,8 +67,7 @@ class User extends Authenticatable
 
     public function plan()
     {
-        return $this->belongsToMany(Plan::class,'user_plans','user_id','plan_id')
-            ->withPivot('expire_date','start_date');
+        return $this->belongsTo(Plan::class, 'plan_id','id');
     }
 
     public function findForPassport($username)

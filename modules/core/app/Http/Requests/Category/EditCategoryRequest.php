@@ -2,9 +2,10 @@
 
 namespace Core\app\Http\Requests\Category;
 
+use Core\app\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditCategoryRequest extends FormRequest
+class EditCategoryRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

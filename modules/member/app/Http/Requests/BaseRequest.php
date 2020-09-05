@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Core\app\Http\Requests;
+namespace Member\app\Http\Requests;
 
 
 use Carbon\Carbon;
@@ -15,20 +15,15 @@ class BaseRequest extends FormRequest
     {
         return [
             'id' => 'آی دی',
-            'title' => 'رو نوشت',
             'plan_id'  => 'پلن',
-            'public' => 'عمومی',
-            'photo' => 'عکس',
-            'description' => 'متن',
-            'expire_days' => 'روزهای انقضا',
-            'default' => 'پیشفرض',
-            'attached' => 'فایل',
-            'category_id'   => 'آی دی دسته بندی'
+            'mobile' => 'موبایل',
+            'password' => 'پسورد',
+            'verify_password' => 'تایید پسورد'
         ];
 
     }
 
-    public function handleFile($name,$path,$params)
+/*    public function handleFile($name,$path,$params)
     {
         if($this->hasFile($name)) {
             $file = $this->file($name);
@@ -40,5 +35,5 @@ class BaseRequest extends FormRequest
             $params[$name] = $fileName;
         }
         return $params;
-    }
+    }*/
 }

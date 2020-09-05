@@ -30,9 +30,10 @@ class SettingService
 
     public function name($name)
     {
-        return $this->repo->where(['slug' => $name])
-            ->first()
-            ->value;
+        $setting =$this->repo->where(['slug' => $name])
+            ->first();
+
+        return $setting ? $setting->value : false;
     }
 
     public function set($request)
@@ -45,6 +46,11 @@ class SettingService
         return [
             $this->repo->update($request['id'],$request)
         ];
+    }
+
+    public function editBySlug($slug,$data)
+    {
+       return $this->repo->where(['slug'=>$slug])->update($data);
     }
 
     public function delete($request)
