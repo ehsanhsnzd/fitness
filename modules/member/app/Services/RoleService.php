@@ -36,7 +36,6 @@ class RoleService
     public function current()
     {
         return $this->user->plan()
-            ->with('categories')
             ->get()
             ->toArray();
     }

@@ -46,11 +46,7 @@ class RoleService
         $plan->role_id = $role->id;
         $plan->save();
 
-        if($request['default'])
-            $this->setting->editBySlug('default_plan',[
-                'title'=>'default plan',
-                'value' => $plan->id
-            ]);
+        $this->setDefault($request,$plan);
 
         return [
             $plan
@@ -59,10 +55,13 @@ class RoleService
 
     public function edit($request)
     {
-        $this->repo->find($request['id'])
-            ->update($request);
+        $plan = $this->planRepo->find($request['id']);
+        $plan->update($request);
 
-        return $this->repo->find($request['id']);
+        $this->setDefault($request,$plan);
+
+
+        return $this->planRepo->find($request['id']);
     }
 
     public function assign($request)
@@ -71,8 +70,19 @@ class RoleService
         return $user->assignRole($request->plan);
     }
 
+
     public function delete($request)
     {
         $this->repo->delete($request['id']);
+    }
+
+
+    public function setDefault($request,$plan)
+    {
+        if($request['default'])
+            $this->setting->editBySlug('default_plan',[
+                'title'=>'default plan',
+                'value' => $plan->id
+            ]);
     }
 }
