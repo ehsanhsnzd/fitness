@@ -64,7 +64,10 @@ class CategoryService
 
     public function edit($request)
     {
-        $this->permissionRepo->where(['name' => 'category.'.$request['id']])->first()->delete();
+        $permission = $this->permissionRepo->where(['name' => 'category.'.$request['id']])->first();
+
+        if($permission)
+            $permission->delete();
 
         $request['description'] = json_encode($request['description']);
 

@@ -32,7 +32,6 @@ class UserService
         $request['start_date'] = Carbon::now();
         $user = $this->repo->create($request);
 
-
         if($defaultPlan)
             $this->role->assignPlan($user, $defaultPlan);
 

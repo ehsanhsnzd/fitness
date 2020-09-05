@@ -93,7 +93,7 @@ trait ExceptionHandler
      */
     private function handle(\Exception $e , $message , $httpCode , $statusCode , $status)
     {
-//        $message = Lang::get('messages.'.$this->getMessage($e));
+        $message = Lang::get('messages.'.$this->getMessage($e));
         return $this->customResponse($message,$status,$httpCode,$statusCode);
     }
 
