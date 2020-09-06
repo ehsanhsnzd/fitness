@@ -1,10 +1,10 @@
 <?php
 
-namespace Member\app\Http\Requests\Category;
+namespace Member\Http\Requests\Category;
 
-use Core\app\repositories\CategoryRepository;
+use Core\repositories\CategoryRepository;
 use Illuminate\Foundation\Http\FormRequest;
-use Member\app\Http\Requests\BaseRequest;
+use Member\Http\Requests\BaseRequest;
 
 class GetCategoryRequest extends BaseRequest
 {

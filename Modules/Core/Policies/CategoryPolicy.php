@@ -1,10 +1,10 @@
-<?php namespace Core\app\Policies;
+<?php namespace Core\Policies;
 
 
 use Carbon\Carbon;
-use Core\app\Models\Category;
+use Core\Models\Category;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Member\app\Models\User;
+use Member\Models\User;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 
 class CategoryPolicy

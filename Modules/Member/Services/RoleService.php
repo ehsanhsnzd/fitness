@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Member\app\Services;
+namespace Member\Services;
 
 
 use Carbon\Carbon;
-use Core\app\repositories\PlanRepository;
-use Core\app\repositories\RoleRepository;
-use Core\app\Services\SettingService;
+use Core\repositories\PlanRepository;
+use Core\repositories\RoleRepository;
+use Core\Services\SettingService;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 
