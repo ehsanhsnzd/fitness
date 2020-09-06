@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use Core\app\Models\Category;
-use Core\app\Policies\CategoryPolicy;
-use Core\app\Policies\DedicatedPlanPolicy;
+use Core\Models\Category;
+use Core\Policies\CategoryPolicy;
+use Core\Policies\DedicatedPlanPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
-use Member\app\Models\UserDedicatedPlan;
+use Member\Models\UserDedicatedPlan;
 
 class AuthServiceProvider extends ServiceProvider
 {

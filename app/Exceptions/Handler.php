@@ -4,13 +4,13 @@ namespace App\Exceptions;
 
 use Dotenv\Exception\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Member\app\Traits\ApiResponse;
+use Member\Traits\ApiResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    use \Core\app\Exceptions\ExceptionHandler;
+    use \Core\Exceptions\ExceptionHandler;
     /**
      * A list of the exception types that are not reported.
      *
