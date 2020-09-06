@@ -1,6 +1,5 @@
 <?php
 
-use Core\app\Models\Admin;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 

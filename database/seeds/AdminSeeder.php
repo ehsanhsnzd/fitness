@@ -1,6 +1,6 @@
 <?php
 
-use Core\app\Models\Admin;
+use Core\Models\Admin;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
