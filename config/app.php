@@ -164,9 +164,9 @@ return [
         /*
          * Package Service Providers...
          */
-        \Core\app\Providers\CoreServiceProvider::class,
-        \Member\app\Providers\UserServiceProvider::class,
-        \Core\app\Providers\AuthServiceProvider::class,
+//        \Core\app\Providers\CoreServiceProvider::class,
+//        \Member\app\Providers\UserServiceProvider::class,
+//        \Core\app\Providers\AuthServiceProvider::class,
         /*
          * Application Service Providers...
          */

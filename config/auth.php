@@ -86,7 +86,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Member\app\Models\User::class,
+            'model' => \Member\Models\User::class,
         ],
         'trainer' => [
             'driver' => 'eloquent',
@@ -94,7 +94,7 @@ return [
         ],
          'admin' => [
              'driver' => 'eloquent',
-             'model' => \Core\app\Models\Admin::class,
+             'model' => \Core\Models\Admin::class,
          ],
     ],
 
