@@ -1,8 +1,7 @@
 <?php
 
-use Core\app\Models\Admin;
-use Core\app\Models\BaseSetting;
-use Core\app\Models\Setting;
+use Core\Models\BaseSetting;
+use Core\Models\Setting;
 use Illuminate\Database\Seeder;
 
 class SettingSeeder extends Seeder
