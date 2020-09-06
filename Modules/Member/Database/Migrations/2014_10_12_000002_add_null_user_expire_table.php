@@ -14,8 +14,7 @@ class AddNullUserExpireTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('expire_date');
-            $table->timestamp('expire_date')->nullable();
+            $table->dateTime('expire_date')->nullable()->change();
         });
     }
 
@@ -27,8 +26,7 @@ class AddNullUserExpireTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('expire_date');
-            $table->timestamp('expire_date');
+            $table->dateTime('expire_date')->nullable()->change();
         });
     }
 }
