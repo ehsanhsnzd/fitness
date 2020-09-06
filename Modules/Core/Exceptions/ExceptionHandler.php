@@ -12,6 +12,7 @@ use Illuminate\Container\EntryNotFoundException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
 use Laravel\Passport\Exceptions\InvalidAuthTokenException;
@@ -93,6 +94,7 @@ trait ExceptionHandler
      */
     private function handle(\Exception $e , $message , $httpCode , $statusCode , $status)
     {
+        Log::error($e);
         $message = Lang::get('messages.'.$this->getMessage($e));
         return $this->customResponse($message,$status,$httpCode,$statusCode);
     }

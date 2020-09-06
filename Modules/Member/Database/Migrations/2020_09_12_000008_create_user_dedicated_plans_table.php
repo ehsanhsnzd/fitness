@@ -32,6 +32,6 @@ class CreateUserDedicatedPlansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_individual_plans');
+        Schema::dropIfExists('user_dedicated_plans');
     }
 }
