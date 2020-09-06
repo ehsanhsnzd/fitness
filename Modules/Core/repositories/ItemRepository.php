@@ -57,6 +57,6 @@ class ItemRepository implements Repository
 
     public function where(array $params)
     {
-        // TODO: Implement where() method.
+        return $this->model->where($params);
     }
 }

@@ -48,4 +48,13 @@ class ItemController extends BaseController
             return $this->handleException($request,$exception);
         }
     }
+
+    public function files(MediaItemRequest $request)
+    {
+        try {
+            return response()->download($this->service->files($request));
+        }catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
+    }
 }

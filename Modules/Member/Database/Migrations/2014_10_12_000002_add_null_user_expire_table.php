@@ -25,8 +25,6 @@ class AddNullUserExpireTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('expire_date')->nullable()->change();
-        });
+
     }
 }

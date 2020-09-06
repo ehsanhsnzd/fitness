@@ -40,8 +40,9 @@ Route::group(['prefix'=>'member/'],function(){
         });
 
         Route::group(['prefix'=>'item/'],function () {
-            Route::get('media/{id}', 'ItemController@media');
+            Route::get('photo/{id}', 'ItemController@media');
             Route::get('file/{id}', 'ItemController@file');
+            Route::get('files/{id}/{file_id}', 'ItemController@files');
             Route::get('{id}', 'ItemController@get');
         });
 

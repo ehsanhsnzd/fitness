@@ -32,7 +32,22 @@ class ItemService
     public function file($request)
     {
 
-        $file = $this->repo->find($request['id'])->attached;
-        return storage_path('app/items/attached/' . $file);
+        $file = $this->repo->find($request['id'])
+            ->files()
+            ->first()
+            ->file;
+
+        return storage_path('app/items/file/' . $file);
+    }
+
+    public function files($request)
+    {
+
+        $file = $this->repo->find($request['id'])
+            ->files()
+            ->find($request['file_id'])
+            ->file;
+
+        return storage_path('app/items/file/' . $file);
     }
 }
