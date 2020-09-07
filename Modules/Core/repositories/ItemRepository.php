@@ -27,7 +27,9 @@ class ItemRepository implements Repository
 
     public function fetch(string $id, array $relations):Collection
     {
-        // TODO: Implement fetch() method.
+        return $this->model->find($id)
+            ->with($relations)
+            ->get();
     }
 
     public function model()
@@ -57,6 +59,6 @@ class ItemRepository implements Repository
 
     public function where(array $params)
     {
-        // TODO: Implement where() method.
+        return $this->model->where($params);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNullUserExpireTable extends Migration
+class CreateItemsFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class AddNullUserExpireTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dateTime('expire_date')->nullable()->change();
+        Schema::create('items_files', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('item_id');
+            $table->string('file');
+            $table->timestamps();
         });
+
     }
 
     /**
@@ -25,6 +29,6 @@ class AddNullUserExpireTable extends Migration
      */
     public function down()
     {
-
+        Schema::dropIfExists('items_files');
     }
 }

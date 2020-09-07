@@ -30,7 +30,7 @@ class EditItemRequest extends BaseRequest
             'id'    =>  'required|numeric',
             'title' => 'string',
             'photo' => 'image|max:1024',
-            'attached' => 'file',
+            'file.*' => 'file',
             'description' => 'string',
             'category_id'   => 'required|numeric|exists:categories,id'
 
@@ -42,7 +42,7 @@ class EditItemRequest extends BaseRequest
     {
         $request =  $this->only('id','title','photo','attached','description','category_id');
         $request = $this->handleFile('photo','items',$request);
-        $request = $this->handleFile('attached','items/attached',$request);
+        $request = $this->handleMultiFile('file','items/file',$request);
         return $request;
     }
 

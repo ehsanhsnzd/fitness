@@ -28,6 +28,7 @@ class BaseRequest extends FormRequest
 
     }
 
+
     public function handleFile($name,$path,$params)
     {
         if($this->hasFile($name)) {
@@ -38,6 +39,23 @@ class BaseRequest extends FormRequest
                 ->putFileAs($path, $file,$fileName);
 
             $params[$name] = $fileName;
+        }
+        return $params;
+    }
+
+
+    public function handleMultiFile($name,$path,$params)
+    {
+        if($this->hasFile($name)) {
+            $file = $this->file($name);
+
+                foreach ($file as $key=>$value) {
+                    $fileName = $value->getClientOriginalName();
+                    $fileName = Carbon::now()->timestamp . $fileName;
+                    Storage::disk('local')
+                        ->putFileAs($path, $value, $fileName);
+                    $params[$name][$key] = $fileName;
+                }
         }
         return $params;
     }

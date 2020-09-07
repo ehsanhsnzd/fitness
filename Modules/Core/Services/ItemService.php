@@ -27,14 +27,24 @@ class ItemService
 
     public function set($request)
     {
-        return $this->repo->create($request)->toArray();
+        $item = $this->repo->create($request);
+        foreach ($request['file'] as $file)
+            $item->files()->create(['file'=>$file]);
+
+        return $item->load('files')->toArray();
     }
 
     public function edit($request)
     {
-        return [
-            $this->repo->update($request['id'],$request)
-        ];
+        $this->repo->update($request['id'],$request);
+        $item = $this->repo->find($request['id']);
+
+        $item->files()->delete();
+
+        foreach ($request['file'] as $file)
+            $item->files()->create(['file'=>$file]);
+
+        return [$item->load('files')->toArray()];
     }
 
     public function delete($request)

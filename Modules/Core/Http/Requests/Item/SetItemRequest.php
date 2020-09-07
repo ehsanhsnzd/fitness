@@ -29,7 +29,7 @@ class SetItemRequest extends BaseRequest
         return [
             'title' => 'required|string',
             'photo' => 'image|max:1024',
-            'attached' => 'file',
+            'file.*' => 'file',
             'description' => 'string',
             'category_id'   => 'required|numeric|exists:categories,id'
         ];
@@ -40,7 +40,7 @@ class SetItemRequest extends BaseRequest
     {
         $request =  $this->only('title','photo','attached','description','category_id');
         $request = $this->handleFile('photo','items',$request);
-        $request = $this->handleFile('attached','items/attached',$request);
+        $request = $this->handleMultiFile('file','items/file',$request);
         return $request;
     }
 

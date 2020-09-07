@@ -11,5 +11,9 @@ class Item extends Model
 {
     protected $fillable=['title','photo','attached','description','category_id'];
 
-    protected $hidden =['photo','attached'];
+
+    public function files()
+    {
+        return $this->hasMany(ItemsFiles::class,'item_id','id');
+    }
 }

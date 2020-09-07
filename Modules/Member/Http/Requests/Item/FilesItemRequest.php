@@ -6,23 +6,21 @@ use Core\repositories\CategoryRepository;
 use Core\repositories\ItemRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Member\Http\Requests\BaseRequest;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 
-class GetItemRequest extends BaseRequest
+class FilesItemRequest extends BaseRequest
 {
     /**
      * @var CategoryRepository
      */
     private $repo;
     private $categoryRepo;
-    /**
-     * GetCategoryRequest constructor.
-     */
+
     public function __construct()
     {
         $this->repo = new ItemRepository();
         $this->categoryRepo = new CategoryRepository();
     }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -43,12 +41,16 @@ class GetItemRequest extends BaseRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric|exists:items,id'
+            'id' => 'required|numeric|exists:items,id',
+            'file_id' => 'required|numeric|exists:items_files,id'
         ];
     }
 
     public function all($keys =null)
     {
-        return ['id' => app('request')->id];
+        return [
+            'id' => app('request')->id,
+            'file_id' => app('request')->file_id,
+        ];
     }
 }
