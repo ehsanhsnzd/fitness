@@ -6,8 +6,9 @@ namespace Member\Http\Controllers;
 
 use Core\Http\Controllers\BaseController;
 use Member\Http\Requests\Category\GetCategoryRequest;
+use Member\Http\Requests\Item\FilesItemRequest;
 use Member\Http\Requests\Item\GetItemRequest;
-use Member\Http\Requests\Item\MediaItemRequest;
+use Member\Http\Requests\Item\PhotoItemRequest;
 use Member\Services\ItemService;
 
 class ItemController extends BaseController
@@ -24,23 +25,23 @@ class ItemController extends BaseController
     public function get(GetItemRequest $request)
     {
         try{
-            return $this->setMetaData($this->service->get($request->all()))->successResponse();
+            return $this->setMetaData($this->service->get($request))->successResponse();
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }
     }
 
-    public function media(MediaItemRequest $request)
+    public function photo(GetItemRequest $request)
     {
         try {
-            return response()->file($this->service->media($request));
+            return response()->file($this->service->photo($request));
         }catch (\Exception $exception){
             return $this->handleException($request,$exception);
         }
     }
 
 
-    public function file(MediaItemRequest $request)
+    public function file(GetItemRequest $request)
     {
         try {
             return response()->download($this->service->file($request));
@@ -49,7 +50,7 @@ class ItemController extends BaseController
         }
     }
 
-    public function files(MediaItemRequest $request)
+    public function files(FilesItemRequest $request)
     {
         try {
             return response()->download($this->service->files($request));

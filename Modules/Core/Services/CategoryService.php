@@ -12,9 +12,11 @@ class CategoryService
     private $repo;
     private $planRepo;
     private $permissionRepo;
+    private $user;
 
     public function __construct( $repository = null)
     {
+        $this->user = auth('users-api')->user();
         $this->repo = $repository ?? new CategoryRepository();
         $this->planRepo = new PlanRepository();
         $this->permissionRepo = new PermissionRepository();
@@ -35,11 +37,18 @@ class CategoryService
      */
     public function get($request)
     {
-        $categories = $this->repo->fetch($request['id'],['nodes','items']);
-        $categories = $this->extractDescription($categories);
+        $category = $this->repo->fetch($request['id'],['nodes','items']);
+        $category = $this->extractDescription($category);
+
+        $subCategories = $category->first()->nodes()->get();
+
+        $category = $this->allItems($category->first(),$subCategories);
+        $category->put('nodes',$this->hasAccess($subCategories));
+
+
 
         return
-            $categories->toArray();
+            $category->toArray();
     }
 
     /**
@@ -111,5 +120,25 @@ class CategoryService
             $role = $plan->role()->first();
             $role->givePermissionTo($permission);
         });
+    }
+
+    public function allItems($category,$subCategories)
+    {
+        $allItems = collect($subCategories)->reduce(function($arr, $category) {
+            if($arr==null)
+                $arr = collect($arr);
+
+            return $arr->merge($category->items()->get());
+        });
+        return $categories = collect($category)->put('allItems',$allItems) ;
+    }
+
+    public function hasAccess(\Illuminate\Support\Collection $categories)
+    {
+        return collect($categories)->map(function($category) {
+             $category->access = $this->user->can('category.'.$category->id);
+             return $category;
+        });
+
     }
 }

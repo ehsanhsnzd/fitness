@@ -43,7 +43,7 @@ class GetItemRequest extends BaseRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric|exists:categories,id'
+            'id' => 'required|numeric|exists:items,id'
         ];
     }
 

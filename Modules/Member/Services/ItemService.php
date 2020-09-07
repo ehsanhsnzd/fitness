@@ -19,10 +19,15 @@ class ItemService
 
     public function get($request)
     {
-        return $this->repo->find($request['id'])->toArray();
+        return $this->repo->fetch($request['id'],
+            [
+                'files'=>function($query){$query->select('item_id','id');}
+            ]
+
+        )->toArray();
     }
 
-    public function media($request)
+    public function photo($request)
     {
 
         $photo = $this->repo->find($request['id'])->photo;

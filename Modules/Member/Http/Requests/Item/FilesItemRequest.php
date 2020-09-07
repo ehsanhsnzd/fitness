@@ -48,6 +48,9 @@ class FilesItemRequest extends BaseRequest
 
     public function all($keys =null)
     {
-        return ['id' => app('request')->id];
+        return [
+            'id' => app('request')->id,
+            'file_id' => app('request')->file_id,
+        ];
     }
 }

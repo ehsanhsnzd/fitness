@@ -27,7 +27,9 @@ class ItemRepository implements Repository
 
     public function fetch(string $id, array $relations):Collection
     {
-        // TODO: Implement fetch() method.
+        return $this->model->find($id)
+            ->with($relations)
+            ->get();
     }
 
     public function model()

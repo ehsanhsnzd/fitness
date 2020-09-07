@@ -7,7 +7,7 @@ use Core\repositories\ItemRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Member\Http\Requests\BaseRequest;
 
-class MediaItemRequest extends BaseRequest
+class PhotoItemRequest extends BaseRequest
 {
     /**
      * @var CategoryRepository
