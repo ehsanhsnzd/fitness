@@ -14,15 +14,62 @@ class CategoryService
         $this->repo = $repository ?? new CategoryRepository();
     }
 
+    public function all()
+    {
+        $categories = $this->repo->fetch(null,['nodes','items'],'parent_id');
+        $categories = $this->extractDescription($categories);
+
+        return
+            $categories->toArray();
+    }
+
     /** get category by id
      * @param $request
      * @return array
      */
     public function get($request)
     {
-        $categories = $this->repo->fetch($request->id,['nodes']);
+        $category = $this->repo->fetch($request['id'],['nodes','items']);
+        $category = $this->extractDescription($category);
 
-        return $categories->toArray();
+        $subCategories = $category->first()->nodes()->get();
+
+        $category = $this->allItems($category->first(),$subCategories);
+        $category->put('nodes',$this->hasAccess($subCategories));
+
+
+
+        return
+            $category->toArray();
+    }
+
+
+    public function allItems($category,$subCategories)
+    {
+        $allItems = collect($subCategories)->reduce(function($arr, $category) {
+            if($arr==null)
+                $arr = collect($arr);
+
+            return $arr->merge($category->items()->get());
+        });
+        return $categories = collect($category)->put('allItems',$allItems) ;
+    }
+
+    public function hasAccess(\Illuminate\Support\Collection $categories)
+    {
+        return collect($categories)->map(function($category) {
+            $category->access = $this->user->can('category.'.$category->id);
+            return $category;
+        });
+
+    }
+
+    public function extractDescription($categories)
+    {
+        return collect($categories)->map(function ($cat){
+            $cat->description = json_decode($cat->description);
+            return $cat;
+        });
     }
 
 }

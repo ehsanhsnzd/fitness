@@ -19,6 +19,16 @@ class BaseSettingController extends BaseController
     }
 
 
+    public function all(Request $request)
+    {
+        try{
+            return $this->setMetaData($this->service->all())->successResponse();
+        }catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
+    }
+
+
     public function get(Request $request)
     {
         try{

@@ -17,6 +17,13 @@ class BaseSettingService
         $this->repo = $repository ?? new BaseSettingRepository();
     }
 
+
+    public function all()
+    {
+        return $this->repo->all()->toArray();
+    }
+
+
     public function get($request)
     {
         return $this->repo->fetch($request->id,['nodes','settings'])->toArray();

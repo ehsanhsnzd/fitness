@@ -29,6 +29,7 @@ Route::group(['prefix'=>'admin/'],function (){
             Route::delete('{id}', 'BaseSettingController@delete');
             Route::get('{id}', 'BaseSettingController@get');
             Route::get('slug/{id}', 'BaseSettingController@getSlug');
+            Route::get('', 'BaseSettingController@all');
         });
 
         Route::group(['prefix'=>'setting/'],function () {
@@ -45,6 +46,7 @@ Route::group(['prefix'=>'admin/'],function (){
             Route::post('upload', 'CategoryController@upload');
             Route::delete('{id}', 'CategoryController@delete');
             Route::get('{id}', 'CategoryController@get');
+            Route::get('', 'CategoryController@all');
 
         });
 
@@ -53,6 +55,7 @@ Route::group(['prefix'=>'admin/'],function (){
             Route::post('edit', 'ItemController@edit');
             Route::delete('{id}', 'ItemController@delete');
             Route::get('{id}', 'ItemController@get');
+            Route::get('', 'ItemController@all');
         });
 
         Route::group(['prefix'=>'plan/'],function () {

@@ -3,16 +3,16 @@ namespace Member\Http\Controllers;
 
 
 use Core\Http\Controllers\BaseController;
-use Core\Services\CategoryService;
 use Illuminate\Http\Request;
 use Member\Http\Requests\Category\GetCategoryRequest;
+use Member\Services\CategoryService;
 
 class CategoryController extends BaseController
 {
     protected $service;
     public function __construct($service = null)
     {
-        $this->service = $service ?? new CategoryService;
+        $this->service = $service ?? new CategoryService();
     }
 
     public function all(Request $request)
