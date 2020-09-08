@@ -20,6 +20,12 @@ class ItemService
         $this->repo = new ItemRepository();
     }
 
+    public function all()
+    {
+        return $this->repo->all()->toArray();
+    }
+
+
     public function get($request)
     {
         return $this->repo->find($request['id'])->toArray();

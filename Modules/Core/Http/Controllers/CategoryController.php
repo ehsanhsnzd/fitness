@@ -8,6 +8,7 @@ use Core\Http\Requests\Category\GetCategoryRequest;
 use Core\Http\Requests\Category\SetCategoryRequest;
 use Core\Http\Requests\Category\UploadCategoryRequest;
 use Core\Services\CategoryService;
+use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
 {
@@ -15,6 +16,16 @@ class CategoryController extends BaseController
     public function __construct($service = null)
     {
         $this->service = $service ?? new CategoryService;
+    }
+
+
+    public function all(Request $request)
+    {
+        try{
+            return $this->setMetaData($this->service->all())->successResponse();
+        }catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
     }
 
 
