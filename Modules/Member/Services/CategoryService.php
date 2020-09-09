@@ -12,6 +12,7 @@ class CategoryService
     public function __construct( $repository = null)
     {
         $this->repo = $repository ?? new CategoryRepository();
+        $this->user = auth('users-api')->user();
     }
 
     public function all()
