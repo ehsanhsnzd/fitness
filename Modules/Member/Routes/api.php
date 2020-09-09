@@ -23,7 +23,12 @@ Route::group(['prefix'=>'member/'],function(){
         Route::post('check', 'UserController@check');
         Route::get('', 'UserController@login')->name('login');
 
+    Route::group(['prefix'=>'item/'],function () {
+        Route::get('photo/{id}', 'ItemController@photo');
+        Route::get('file/{id}', 'ItemController@file');
+        Route::get('files/{id}/{file_id}', 'ItemController@files');
 
+    });
 
 
 
@@ -40,9 +45,9 @@ Route::group(['prefix'=>'member/'],function(){
         });
 
         Route::group(['prefix'=>'item/'],function () {
-            Route::get('photo/{id}', 'ItemController@photo');
-            Route::get('file/{id}', 'ItemController@file');
-            Route::get('files/{id}/{file_id}', 'ItemController@files');
+//            Route::get('photo/{id}', 'ItemController@photo');
+//            Route::get('file/{id}', 'ItemController@file');
+//            Route::get('files/{id}/{file_id}', 'ItemController@files');
             Route::get('{id}', 'ItemController@get');
         });
 

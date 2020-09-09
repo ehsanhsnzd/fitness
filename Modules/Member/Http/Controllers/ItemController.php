@@ -31,7 +31,7 @@ class ItemController extends BaseController
         }
     }
 
-    public function photo(GetItemRequest $request)
+    public function photo(PhotoItemRequest $request)
     {
         try {
             return response()->file($this->service->photo($request));
@@ -41,7 +41,7 @@ class ItemController extends BaseController
     }
 
 
-    public function file(GetItemRequest $request)
+    public function file(PhotoItemRequest $request)
     {
         try {
             return response()->download($this->service->file($request));

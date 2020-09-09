@@ -8,6 +8,7 @@ use Core\repositories\CategoryRepository;
 class CategoryService
 {
     private $repo;
+    private $user;
 
     public function __construct( $repository = null)
     {
