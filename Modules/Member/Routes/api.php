@@ -40,6 +40,7 @@ Route::group(['prefix'=>'member/'],function(){
         });
 
         Route::group(['prefix'=>'category/'],function () {
+            Route::get('all-items/{id}', 'CategoryController@getAllItems');
             Route::get('{id}', 'CategoryController@get');
             Route::get('', 'CategoryController@all');
         });

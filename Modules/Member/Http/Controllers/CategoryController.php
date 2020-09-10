@@ -24,6 +24,15 @@ class CategoryController extends BaseController
         }
     }
 
+    public function getAllItems(GetCategoryRequest $request)
+    {
+        try{
+            return $this->setMetaData($this->service->getWithAllItems($request->all()))->successResponse();
+        }catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
+    }
+
     public function get(GetCategoryRequest $request)
     {
         try{
