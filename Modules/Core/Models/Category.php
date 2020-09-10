@@ -17,8 +17,7 @@ class Category extends Model
      */
     public function nodes()
     {
-        return $this->hasMany(Category::class,'parent_id','id')
-            ->with('nodes');
+        return $this->hasMany(Category::class,'parent_id','id');
     }
 
     public function plan()

@@ -326,6 +326,42 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "get with all items by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiN2IxNTZiZGE3YTEzYjk1ZThkMzRmODk0NmZlZDE4YjAwNDNiMmNjZjg5NDg2ZWYxOWY2MmVjYmE1MGRmNjljYTg3ZTdlYmVkMDA3MmVmM2YiLCJpYXQiOjE1OTk3MTc2NTUsIm5iZiI6MTU5OTcxNzY1NSwiZXhwIjo4Nzk5OTYzMTI1NSwic3ViIjoiNTAiLCJzY29wZXMiOlsiKiJdfQ.HJU35zLd0ZQwHA2KOU2uAejzUKHTKhNvwPi6soEAcK78cdQieSH_x1NHQQYcEpgqkZWLIoGrqWkeMc6xGw6LG2hQ6fqavZJEU1jqseXG7QO56wIgGcstL1RwKy34z5LjaPiJLAfPC1PF3E8wrBMfEIvWojcq4prmrp1omWUeQ4ed249DPoAqOiH9h27tfJi9xpuzfwUbOJXkRsEESR4OsJ_TujGCUdlxXcQ9eRvfQIE46ZSdsXnTbu8uPniDwS4pK014juVAQk5hVE1CjmQqQnF5J4QPjXZAfYF2JNkoCOxtch8OWKRFJq-7CmyUDPBz1qDW4uv1GXI_TgT23GXiHY8bqyM7pOAOeXgnC8NXpiQfgijYCRgrtLSY5IblO3Brg49CUv1_hHV-t6b0_o68eTiQvL6XFhU-jq2rO1YQH3cGI6toWDjglV24mb8Q9ksy74IKDl1h6Pa2j8oI4NyS6DkhWXPBpy35uRGcg96Fp_rUMBTnMer_rS813uMp1jr01yu5Dp0WcGkGz_2cG2mQrt3FTj9OzzwCFBCWX8P5gPDpeqsigzsvaMMp2AnR0HpsnP4f4xSt6asNeKvFJcsQsNWMWMnUt2eY0dIeHAN_VIuxGIPlZtqcrYIxCbrPtX8IwGuJa2-Q7a7--BdO4s1CDhCFMbRHmksngcoFqOcog4Y",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{localhost}}/member/category/all-items/2",
+									"host": [
+										"{{localhost}}"
+									],
+									"path": [
+										"member",
+										"category",
+										"all-items",
+										"2"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},

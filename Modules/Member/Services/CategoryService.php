@@ -3,6 +3,8 @@ namespace Member\Services;
 
 
 
+use Core\Models\Category;
+use Core\Models\Item;
 use Core\repositories\CategoryRepository;
 
 class CategoryService
@@ -34,11 +36,26 @@ class CategoryService
         $category = $this->repo->fetch($request['id'],['nodes','items']);
         $category = $this->extractDescription($category);
 
+        return
+            $category->toArray();
+    }
+
+
+    /** get with all items
+     * @param $request
+     * @return array
+     */
+    public function getWithAllItems($request)
+    {
+        $category = $this->repo->fetch($request['id'],['nodes','items']);
+        $category = $this->extractDescription($category);
+
         $subCategories = $category->first()->nodes()->get();
+        $newCategory = $this->allItems($subCategories);
 
-        $category = $this->allItems($category->first(),$subCategories);
-        $category->put('nodes',$this->hasAccess($subCategories));
-
+        /** add new category to nodes */
+        $nodes = collect($category->first()->nodes()->get())->add($newCategory->toArray());
+        $category = collect($category->first())->put('nodes',$nodes);
 
 
         return
@@ -46,7 +63,7 @@ class CategoryService
     }
 
 
-    public function allItems($category,$subCategories)
+    public function allItems($subCategories)
     {
         $allItems = collect($subCategories)->reduce(function($arr, $category) {
             if($arr==null)
@@ -54,7 +71,11 @@ class CategoryService
 
             return $arr->merge($category->items()->get());
         });
-        return $categories = collect($category)->put('allItems',$allItems) ;
+
+        //TODO fix title
+        $newCategory = collect()->put('title','همه');
+        return $newCategory = $newCategory->put('items',$allItems ? $allItems->toArray() : []);
+
     }
 
     public function hasAccess(\Illuminate\Support\Collection $categories)
