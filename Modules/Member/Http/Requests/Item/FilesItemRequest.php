@@ -41,8 +41,8 @@ class FilesItemRequest extends BaseRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric|exists:items,id',
-            'file_id' => 'required|numeric|exists:items_files,id'
+            'id' => 'required',
+//            'file_id' => 'required'
         ];
     }
 

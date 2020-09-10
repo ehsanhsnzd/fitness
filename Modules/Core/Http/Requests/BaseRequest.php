@@ -34,7 +34,7 @@ class BaseRequest extends FormRequest
         if($this->hasFile($name)) {
             $file = $this->file($name);
             $fileName = $file->getClientOriginalName();
-            $fileName = Carbon::now()->timestamp . $fileName;
+            $fileName = base64_encode(Carbon::now()->timestamp . $fileName);
             Storage::disk('local')
                 ->putFileAs($path, $file,$fileName);
 
@@ -51,7 +51,7 @@ class BaseRequest extends FormRequest
 
                 foreach ($file as $key=>$value) {
                     $fileName = $value->getClientOriginalName();
-                    $fileName = Carbon::now()->timestamp . $fileName;
+                    $fileName =base64_encode( Carbon::now()->timestamp . $fileName.$key);
                     Storage::disk('local')
                         ->putFileAs($path, $value, $fileName);
                     $params[$name][$key] = $fileName;

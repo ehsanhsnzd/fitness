@@ -41,7 +41,7 @@ class PhotoItemRequest extends BaseRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric|exists:items,id'
+            'id' => 'required'
         ];
     }
 
