@@ -37,7 +37,7 @@ class CategoryService
         $category = $this->extractDescription($category);
 
         return
-            $category->toArray();
+            $category->first()->toArray();
     }
 
 
