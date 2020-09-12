@@ -4,6 +4,7 @@
 namespace Member\Models;
 
 
+use Core\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 
 class UserDedicatedPlan extends Model
@@ -23,4 +24,6 @@ class UserDedicatedPlan extends Model
         return $this->hasMany(UserDedicatedItem::class,'plan_id','id')
             ->where(['day_id'=>$day]);
     }
+
+
 }

@@ -5,6 +5,7 @@ namespace Core\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Member\Models\ItemInfo;
 use Spatie\Permission\Models\Role;
 
 class Item extends Model
@@ -15,5 +16,10 @@ class Item extends Model
     public function files()
     {
         return $this->hasMany(ItemsFiles::class,'item_id','id');
+    }
+
+    public function itemInfo()
+    {
+        return $this->hasOne(ItemInfo::class,'item_id','id');
     }
 }

@@ -18,13 +18,31 @@ class DedicatedPlanService extends BaseService
         $this->user = auth()->guard('users-api')->user();
         $this->repo = $repo ?? new DedicatedPlanRepository();
     }
+//
+//    public function get($request)
+//    {
+//        return  $this->repo->find($request['id'])
+//            ->items($request['id'])->with('item','itemInfo')
+//            ->get()
+//            ->toArray();
+//    }
 
     public function get($request)
     {
-        return  $this->repo->find($request['id'])
-            ->items($request['id'])->with('item','itemInfo')
-            ->get()
-            ->toArray();
+        $items =$this->repo->find($request->id)->items(1);
+        $itemsIDs = $items->pluck('item_id')->toArray();
+        $itemsInfosIDs = $items->pluck('item_info_id')->toArray();
+
+        $categories= $items->with(['categories'=>function($query) use($itemsIDs,$itemsInfosIDs){
+            return $query->with(['items'=>function($query)use($itemsIDs,$itemsInfosIDs){
+                $query->whereIn('id',$itemsIDs)->with(['itemInfo'=>function($query)use($itemsInfosIDs){
+                    $query->whereIn('id',$itemsInfosIDs);
+                }]);
+            }]);
+        }])->get();
+
+        return $categories->pluck('categories.0')->toArray();
+
     }
 
     public function getDays($request)

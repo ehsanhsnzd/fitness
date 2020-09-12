@@ -6,6 +6,7 @@ namespace Member\Http\Controllers;
 
 use Core\Http\Controllers\AbstractController;
 use Core\repositories\BaseRepository;
+use GuzzleHttp\Psr7\Request;
 use Member\Http\Requests\DedicatedPlan\GetDedicatedPlanRequest;
 use Member\Models\UserDedicatedPlan;
 use Member\Services\DedicatedPlanService;
@@ -33,5 +34,17 @@ class DedicatedPlanController extends AbstractController
             return $this->handleException($request,$exception);
         }
     }
+
+    public function get(\Illuminate\Http\Request $request)
+    {
+
+        try{
+             return $this->setMetaData($this->service->get($request))->successResponse();
+        }catch (\Exception $exception){
+            return $this->handleException($request,$exception);
+        }
+    }
+
+
 
 }
