@@ -50,12 +50,9 @@ class CategoryService
         $category = $this->repo->fetch($request['id'],['nodes','items']);
         $category = $this->extractDescription($category);
 
-        $subCategories = $category->first()->nodes()->get();
-        $newCategory = $this->allItems($subCategories);
 
-        /** add new category to nodes */
-        $nodes = collect($category->first()->nodes()->get())->add($newCategory->toArray());
-        $category = collect($category->first())->put('nodes',$nodes);
+        $subCategories = $category->first()->nodes()->get();
+        $category = collect($category->first())->put('items',$this->allItems($subCategories));
 
 
         return
@@ -65,16 +62,12 @@ class CategoryService
 
     public function allItems($subCategories)
     {
-        $allItems = collect($subCategories)->reduce(function($arr, $category) {
+        return collect($subCategories)->reduce(function($arr, $category) {
             if($arr==null)
                 $arr = collect($arr);
 
             return $arr->merge($category->items()->get());
         });
-
-        //TODO fix title
-        $newCategory = collect()->put('title','همه');
-        return $newCategory = $newCategory->put('items',$allItems ? $allItems->toArray() : []);
 
     }
 
