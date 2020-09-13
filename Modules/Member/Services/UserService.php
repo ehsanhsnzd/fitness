@@ -1,4 +1,4 @@
-<?php   namespace Member\Services;
+<?php namespace Member\Services;
 
 
 use Carbon\Carbon;
@@ -21,8 +21,9 @@ class UserService
     {
         $this->repo = new UserRepository();
         $this->setting = new SettingService();
-        $this->role= new RoleService();
+        $this->role = new RoleService();
     }
+
     public function register($request)
     {
 
@@ -32,25 +33,24 @@ class UserService
         $request['start_date'] = Carbon::now();
         $user = $this->repo->create($request);
 
-        if($defaultPlan)
+        if ($defaultPlan)
             $this->role->assignPlan($user, $defaultPlan);
 
 
         $oClient = OClient::where('password_client', 1)->first();
         $params = ['form_params' => [
-        'grant_type' => 'password',
-        'client_id' => $oClient->id,
-        'client_secret' => $oClient->secret,
-        'username' => $request['mobile'],
-        'password' => $password,
-        'scope' => '*',
+            'grant_type' => 'password',
+            'client_id' => $oClient->id,
+            'client_secret' => $oClient->secret,
+            'username' => $request['mobile'],
+            'password' => $password,
+            'scope' => '*',
         ]];
 
 
-
         return [
-            'auth' =>   $this->getTokenAndRefreshToken($params),
-            'profile' =>   $user->profile()->create(['name'=>'','last_name'=>''])
+            'auth' => $this->getTokenAndRefreshToken($params),
+            'profile' => $user->profile()->create(['name' => '', 'last_name' => ''])
         ];
     }
 
@@ -64,13 +64,26 @@ class UserService
             'refresh_token' => $request->refresh_token,
             'scope' => '*',
         ]];
-        return $this->getTokenAndRefreshToken($params);
+
+        $user = auth('users-api')->user();
+        return [
+            'auth' => $this->getTokenAndRefreshToken($params),
+            'profile' => $user ? $user->profile()->create(['name' => '', 'last_name' => '']) :
+                (object)[
+                    "id" => 0,
+                    "user_id" => 0,
+                    "name" => "",
+                    "last_name" => "",
+                    "created_at" => "",
+                    "updated_at" => ""
+                ]
+        ];
 
     }
 
-        public function login($request)
+    public function login($request)
     {
-        $auth =Auth::guard('users')->attempt(['mobile' => request('mobile'), 'password' => request('password')]);
+        $auth = Auth::guard('users')->attempt(['mobile' => request('mobile'), 'password' => request('password')]);
         if ($auth) {
             $oClient = oClient::where('password_client', 1)->first();
         }
@@ -84,8 +97,8 @@ class UserService
             'scope' => '*',
         ]];
         return [
-            'auth' =>   $this->getTokenAndRefreshToken($params),
-            'profile' => $this->repo->where(['mobile'=>$request->mobile])->first()->profile()->first()
+            'auth' => $this->getTokenAndRefreshToken($params),
+            'profile' => $this->repo->where(['mobile' => $request->mobile])->first()->profile()->first()
         ];
 
     }
@@ -96,7 +109,7 @@ class UserService
      */
     public function logout($request)
     {
-        if(isset($request->user()->tokens))
+        if (isset($request->user()->tokens))
             return [$request->user()->token()->revoke()];
 
         return [];
@@ -109,7 +122,7 @@ class UserService
      */
     public function check($request)
     {
-        return [$this->repo->where(['mobile'=>$request['mobile']])
+        return [$this->repo->where(['mobile' => $request['mobile']])
             ->get()->isNotEmpty()];
     }
 
@@ -118,11 +131,12 @@ class UserService
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getTokenAndRefreshToken($params) {
+    public function getTokenAndRefreshToken($params)
+    {
 
         $http = new Client;
-        $response = $http->request('POST', request()->root().'/oauth/token',$params);
-        $res = json_decode((string) $response->getBody(), true);
+        $response = $http->request('POST', request()->root() . '/oauth/token', $params);
+        $res = json_decode((string)$response->getBody(), true);
         $res['expires_in_date'] = (new Carbon(Carbon::now()->timestamp + $res['expires_in']))->toDateString();
         return $res;
     }
