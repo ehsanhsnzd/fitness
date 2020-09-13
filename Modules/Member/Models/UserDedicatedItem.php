@@ -4,6 +4,7 @@
 namespace Member\Models;
 
 
+use Core\Models\Category;
 use Core\Models\Item;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,5 +20,11 @@ class UserDedicatedItem extends Model
     public function itemInfo()
     {
         return $this->hasOne(Item::class,'id','item_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class,'items','id','category_id')
+            ->groupBy('id');
     }
 }
