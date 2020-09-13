@@ -122,7 +122,8 @@ class UserService
 
         $http = new Client;
         $response = $http->request('POST', request()->root().'/oauth/token',$params);
-        return json_decode((string) $response->getBody(), true);
-
+        $res = json_decode((string) $response->getBody(), true);
+        $res['expires_in'] = (new Carbon(Carbon::now()->timestamp + $res['expires_in']))->toDateString();
+        return $res;
     }
 }
