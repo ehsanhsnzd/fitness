@@ -85,7 +85,7 @@ class UserService
         ]];
         return [
             'auth' =>   $this->getTokenAndRefreshToken($params),
-            'profile' => $this->repo->where(['mobile'=>$request->mobile])->first()->profile()->get()
+            'profile' => $this->repo->where(['mobile'=>$request->mobile])->first()->profile()->first()
         ];
 
     }
