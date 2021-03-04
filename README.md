@@ -38,3 +38,4 @@ This project created with **Laravel 7.0**
 *`php artisan passport:install`
 
 *`php artisan passport:client --password`
+# fitness
